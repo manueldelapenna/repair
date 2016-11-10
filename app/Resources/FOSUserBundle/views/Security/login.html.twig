@@ -1,0 +1,62 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h1>Ingresar al sistema</h1>
+    </div>
+    <br>
+
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form class="form-horizontal col-sm-8 col-md-6" action="{{ path("fos_user_security_check") }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="username">{{ 'security.login.username'|trans }}</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-sm-3" for="password">{{ 'security.login.password'|trans }}</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="password" name="_password" required="required" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+             <div class="col-sm-offset-3 col-sm-9">
+                <div class="checkbox">
+                    <label><input type="checkbox" id="remember_me" name="_remember_me" value="on" />{{ 'security.login.remember_me'|trans }}</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <input type="submit" class="btn btn-success" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                <a class="btn btn-primary" href="{{ path('fos_user_resetting_request') }}">¿Olvidaste tu contraseña?</a>
+            </div>
+        </div>
+
+        {#<div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <h4>¿No tenés usuario?</h4>
+                <a class="btn btn-success" href="{{path('fos_user_registration_register')}}">Registrarse</a>
+            </div>
+        </div>#}
+        
+    </form>
+
+</div>
+
+
+
+{% endblock fos_user_content %}

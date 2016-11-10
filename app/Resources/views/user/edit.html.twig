@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    
+    
+        {{ form_start(delete_form) }}
+            <a class="btn btn-success" href="{{ path('user_index') }}">{{ 'back to the list'|trans }}</a>
+            {% if app.user.id != user.id %}
+                <input class="btn btn-danger" type="submit" value="{{ 'delete'|trans }}" onclick="return confirm('{{ 'Are you sure?'|trans }}')">
+            {% endif %}
+        {{ form_end(delete_form) }}
+    
+
+
+    <h1>{{ 'User edit'|trans }}</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input class="btn btn-default col-sm-offset-2" type="submit" value="{{ 'edit'|trans }}" />
+    {{ form_end(edit_form) }}
+    
+    
+    
+
+{% endblock %}
