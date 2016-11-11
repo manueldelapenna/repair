@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <meta charset="UTF-8" />
-    <title>{% block title %}Gestión de Reparaciones{% endblock %}</title>
+    <title>{% block title %}Seguimiento de Reparaciones{% endblock %}</title>
     {% block stylesheets %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/font-awesome.min.css">
@@ -49,8 +49,10 @@
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                          <li><a href="{{path('user_index')}}">Usuarios</a></li>
+                           <li><a href="{{path('customer_index')}}">Clientes</a></li>
+                           <li><a href="{{path('iva_condition_index')}}">Condicion frente IVA</a></li>
                           <li role="separator" class="divider"></li>
+                          <li><a href="{{path('user_index')}}">Usuarios</a></li>
                         </ul>
                       </li>
                       {% endif %}

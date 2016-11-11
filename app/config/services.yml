@@ -11,6 +11,14 @@ services:
     app.datatable.user:
         class: AppBundle\Datatables\UserDatatable
         parent: sg_datatables.datatable.abstract
+    
+    app.datatable.customer:
+        class: AppBundle\Datatables\CustomerDatatable
+        parent: sg_datatables.datatable.abstract
+        
+    app.datatable.iva_condition:
+        class: AppBundle\Datatables\IvaConditionDatatable
+        parent: sg_datatables.datatable.abstract
 
     app.form.registration:
         class: AppBundle\Form\RegistrationType
