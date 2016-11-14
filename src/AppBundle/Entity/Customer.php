@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Customer
@@ -96,10 +97,23 @@ class Customer
      * @ORM\JoinColumn(name="iva_condition_id", nullable=false, referencedColumnName="id")
      */
     private $ivaCondition;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Reparation", mappedBy="customer")
+     */
+    private $reparations;
+    
 
     public function __construct()
     {
         $this->setCreatedAt(new \DateTime("now"));
+        $this->reparations = new ArrayCollection();
+    }
+    
+    public function __toString() {
+        
+        return $this->name;
+        
     }
 
     /**
@@ -369,5 +383,16 @@ class Customer
         $this->ivaCondition = $ivaCondition;
 
         return $this;
+    }
+    
+    /**
+     * Get reparations
+     *
+     * @return Array Reparation
+     */
+    public function getReparations()
+    {
+        return $this->reparations;
+
     }
 }

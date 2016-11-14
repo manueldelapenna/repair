@@ -12,30 +12,30 @@ use AppBundle\Form\IvaConditionType;
 /**
  * IvaCondition controller.
  *
- * @Route("/admin/iva_condition")
+ * @Route("/admin/ivacondition")
  */
 class IvaConditionController extends Controller {
 
     /**
      * Lists all IvaCondition entities.
      *
-     * @Route("/", name="iva_condition_index")
+     * @Route("/", name="ivacondition_index")
      * @Method("GET")
      */
     public function indexAction() {
-        $datatable = $this->get('app.datatable.iva_condition');
+        $datatable = $this->get('app.datatable.ivacondition');
         $datatable->buildDatatable();
 
-        return $this->render('iva_condition/index.html.twig', array(
+        return $this->render('ivacondition/index.html.twig', array(
                     'datatable' => $datatable,
         ));
     }
 
     /**
-     * @Route("/results", name="iva_condition_results")
+     * @Route("/results", name="ivacondition_results")
      */
     public function indexResultsAction() {
-        $datatable = $this->get('app.datatable.iva_condition');
+        $datatable = $this->get('app.datatable.ivacondition');
         $datatable->buildDatatable();
 
         $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
@@ -46,7 +46,7 @@ class IvaConditionController extends Controller {
     /**
      * Creates a new IvaCondition entity.
      *
-     * @Route("/new", name="iva_condition_new", options={"expose"=true})
+     * @Route("/new", name="ivacondition_new", options={"expose"=true})
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request) {
@@ -59,10 +59,10 @@ class IvaConditionController extends Controller {
             $em->persist($ivaCondition);
             $em->flush();
 
-            return $this->redirectToRoute('iva_condition_show', array('id' => $ivaCondition->getId()));
+            return $this->redirectToRoute('ivacondition_show', array('id' => $ivaCondition->getId()));
         }
 
-        return $this->render('iva_condition/new.html.twig', array(
+        return $this->render('ivacondition/new.html.twig', array(
                     'ivaCondition' => $ivaCondition,
                     'form' => $form->createView(),
         ));
@@ -71,13 +71,13 @@ class IvaConditionController extends Controller {
     /**
      * Finds and displays a IvaCondition entity.
      *
-     * @Route("/{id}", name="iva_condition_show", options={"expose"=true})
+     * @Route("/{id}", name="ivacondition_show", options={"expose"=true})
      * @Method("GET")
      */
     public function showAction(IvaCondition $ivaCondition) {
         $deleteForm = $this->createDeleteForm($ivaCondition);
 
-        return $this->render('iva_condition/show.html.twig', array(
+        return $this->render('ivacondition/show.html.twig', array(
                     'ivaCondition' => $ivaCondition,
                     'delete_form' => $deleteForm->createView(),
         ));
@@ -86,7 +86,7 @@ class IvaConditionController extends Controller {
     /**
      * Displays a form to edit an existing IvaCondition entity.
      *
-     * @Route("/{id}/edit", name="iva_condition_edit", options={"expose"=true})
+     * @Route("/{id}/edit", name="ivacondition_edit", options={"expose"=true})
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, IvaCondition $ivaCondition) {
@@ -99,10 +99,10 @@ class IvaConditionController extends Controller {
             $em->persist($ivaCondition);
             $em->flush();
 
-            return $this->redirectToRoute('iva_condition_edit', array('id' => $ivaCondition->getId()));
+            return $this->redirectToRoute('ivacondition_edit', array('id' => $ivaCondition->getId()));
         }
 
-        return $this->render('iva_condition/edit.html.twig', array(
+        return $this->render('ivacondition/edit.html.twig', array(
                     'ivaCondition' => $ivaCondition,
                     'edit_form' => $editForm->createView(),
                     'delete_form' => $deleteForm->createView(),
@@ -112,7 +112,7 @@ class IvaConditionController extends Controller {
     /**
      * Deletes a IvaCondition entity.
      *
-     * @Route("/{id}", name="iva_condition_delete")
+     * @Route("/{id}", name="ivacondition_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, IvaCondition $ivaCondition) {
@@ -125,7 +125,7 @@ class IvaConditionController extends Controller {
             $em->flush();
         }
 
-        return $this->redirectToRoute('iva_condition_index');
+        return $this->redirectToRoute('ivacondition_index');
     }
 
     /**
@@ -137,7 +137,7 @@ class IvaConditionController extends Controller {
      */
     private function createDeleteForm(IvaCondition $ivaCondition) {
         return $this->createFormBuilder()
-                        ->setAction($this->generateUrl('iva_condition_delete', array('id' => $ivaCondition->getId())))
+                        ->setAction($this->generateUrl('ivacondition_delete', array('id' => $ivaCondition->getId())))
                         ->setMethod('DELETE')
                         ->getForm()
         ;

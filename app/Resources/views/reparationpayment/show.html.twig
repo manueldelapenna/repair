@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ReparationPayment</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reparationPayment.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if reparationPayment.date %}{{ reparationPayment.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>{{ reparationPayment.amount }}</td>
+            </tr>
+            <tr>
+                <th>Concept</th>
+                <td>{{ reparationPayment.concept }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reparationpayment_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('reparationpayment_edit', { 'id': reparationPayment.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

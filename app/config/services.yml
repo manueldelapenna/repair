@@ -16,8 +16,20 @@ services:
         class: AppBundle\Datatables\CustomerDatatable
         parent: sg_datatables.datatable.abstract
         
-    app.datatable.iva_condition:
+    app.datatable.ivacondition:
         class: AppBundle\Datatables\IvaConditionDatatable
+        parent: sg_datatables.datatable.abstract
+        
+    app.datatable.repairstate:
+        class: AppBundle\Datatables\RepairStateDatatable
+        parent: sg_datatables.datatable.abstract
+        
+    app.datatable.reparation:
+        class: AppBundle\Datatables\ReparationDatatable
+        parent: sg_datatables.datatable.abstract
+        
+    app.datatable.reparationpayment:
+        class: AppBundle\Datatables\ReparationPaymentDatatable
         parent: sg_datatables.datatable.abstract
 
     app.form.registration:

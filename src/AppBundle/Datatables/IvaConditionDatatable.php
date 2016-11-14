@@ -22,7 +22,7 @@ class IvaConditionDatatable extends AbstractDatatableView
             'end_html' => '<hr></div></div>',
             'actions' => array(
                 array(
-                    'route' => $this->router->generate('iva_condition_new'),
+                    'route' => $this->router->generate('ivacondition_new'),
                     'label' => $this->translator->trans('datatables.actions.new'),
                     'icon' => 'glyphicon glyphicon-plus',
                     'attributes' => array(
@@ -53,7 +53,7 @@ class IvaConditionDatatable extends AbstractDatatableView
         ));
 
         $this->ajax->set(array(
-            'url' => $this->router->generate('iva_condition_results'),
+            'url' => $this->router->generate('ivacondition_results'),
             'type' => 'GET'
         ));
 
@@ -90,7 +90,7 @@ class IvaConditionDatatable extends AbstractDatatableView
                 'title' => $this->translator->trans('datatables.actions.title'),
                 'actions' => array(
                     array(
-                        'route' => 'iva_condition_show',
+                        'route' => 'ivacondition_show',
                         'route_parameters' => array(
                             'id' => 'id'
                         ),
@@ -104,7 +104,7 @@ class IvaConditionDatatable extends AbstractDatatableView
                         ),
                     ),
                     array(
-                        'route' => 'iva_condition_edit',
+                        'route' => 'ivacondition_edit',
                         'route_parameters' => array(
                             'id' => 'id'
                         ),
@@ -135,6 +135,6 @@ class IvaConditionDatatable extends AbstractDatatableView
      */
     public function getName()
     {
-        return 'iva_condition_datatable';
+        return 'ivacondition_datatable';
     }
 }

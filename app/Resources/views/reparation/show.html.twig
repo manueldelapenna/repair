@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reparation</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ reparation.id }}</td>
+            </tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ reparation.brand }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ reparation.model }}</td>
+            </tr>
+            <tr>
+                <th>Series</th>
+                <td>{{ reparation.series }}</td>
+            </tr>
+            <tr>
+                <th>Joystick</th>
+                <td>{{ reparation.joystick }}</td>
+            </tr>
+            <tr>
+                <th>Battery</th>
+                <td>{% if reparation.battery %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Charger</th>
+                <td>{% if reparation.charger %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Diagnostic</th>
+                <td>{{ reparation.diagnostic }}</td>
+            </tr>
+            <tr>
+                <th>Clientdescription</th>
+                <td>{{ reparation.clientDescription }}</td>
+            </tr>
+            <tr>
+                <th>Technicalreport</th>
+                <td>{{ reparation.technicalReport }}</td>
+            </tr>
+            <tr>
+                <th>Budget</th>
+                <td>{{ reparation.budget }}</td>
+            </tr>
+            <tr>
+                <th>Entrydate</th>
+                <td>{% if reparation.entryDate %}{{ reparation.entryDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Estimatedeliverydate</th>
+                <td>{% if reparation.estimateDeliveryDate %}{{ reparation.estimateDeliveryDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Efectivedeliverydate</th>
+                <td>{% if reparation.efectiveDeliveryDate %}{{ reparation.efectiveDeliveryDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Observations</th>
+                <td>{{ reparation.observations }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reparation_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('reparation_edit', { 'id': reparation.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

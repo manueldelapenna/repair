@@ -84,26 +84,14 @@ class IvaCondition
 
 
     /**
-     * Add customer
+     * Get customers
      *
-     * @param \AppBundle\Entity\Customer $customer
-     *
-     * @return IvaCondition
+     * @return Array Customer
      */
-    public function addCustomer(\AppBundle\Entity\Customer $customer)
+    public function getCostumers()
     {
-        $this->customers[] = $customer;
+        return $this->customers;
 
-        return $this;
     }
 
-    /**
-     * Remove customer
-     *
-     * @param \AppBundle\Entity\Customer $customer
-     */
-    public function removeCustomer(\AppBundle\Entity\Customer $customer)
-    {
-        $this->customers->removeElement($customer);
-    }
 }
