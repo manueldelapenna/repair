@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * RepairState
@@ -27,6 +28,22 @@ class RepairState
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
+    
+    /**
+     * @ORM\OneToMany(targetEntity="Reparation", mappedBy="state")
+     */
+    private $reparations;
+    
+    public function __construct()
+    {
+        $this->reparations = new ArrayCollection();
+    }
+    
+    public function __toString() {
+        
+        return $this->name;
+        
+    }
 
 
     /**
@@ -61,6 +78,17 @@ class RepairState
     public function getName()
     {
         return $this->name;
+    }
+    
+    /**
+     * Get reparations
+     *
+     * @return Array Reparation
+     */
+    public function getReparations()
+    {
+        return $this->reparations;
+
     }
 }
 

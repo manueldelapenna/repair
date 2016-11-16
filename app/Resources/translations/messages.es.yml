@@ -1,8 +1,11 @@
 edit: Editar
 delete: Eliminar
 back to the list: Volver al listado
-User edit: Editar Usuario
 create: Crear
+Are you sure?: ¿Está seguro que desea borrar el elemento?
+
+User edit: Editar Usuario
 User creation: Crear Usuario
 User: Usuario
-Are you sure?: ¿Está seguro que desea borrar la entidad?
+
+Customer creation: Crear Cliente

@@ -113,14 +113,17 @@ class ReparationDatatable extends AbstractDatatableView
             ->add('budget', 'column', array(
                 'title' => 'Budget',
             ))
+            ->add('payment', 'column', array(
+                'title' => 'Payment',
+            ))
             ->add('entryDate', 'datetime', array(
                 'title' => 'EntryDate',
             ))
             ->add('estimateDeliveryDate', 'datetime', array(
                 'title' => 'EstimateDeliveryDate',
             ))
-            ->add('efectiveDeliveryDate', 'datetime', array(
-                'title' => 'EfectiveDeliveryDate',
+            ->add('effectiveDeliveryDate', 'datetime', array(
+                'title' => 'EffectiveDeliveryDate',
             ))
             ->add('observations', 'column', array(
                 'title' => 'Observations',

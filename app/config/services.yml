@@ -28,10 +28,6 @@ services:
         class: AppBundle\Datatables\ReparationDatatable
         parent: sg_datatables.datatable.abstract
         
-    app.datatable.reparationpayment:
-        class: AppBundle\Datatables\ReparationPaymentDatatable
-        parent: sg_datatables.datatable.abstract
-
     app.form.registration:
         class: AppBundle\Form\RegistrationType
         tags:

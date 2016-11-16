@@ -49,7 +49,42 @@ class CustomerDatatable extends AbstractDatatableView
             'searching' => true,
             'state_save' => false,
             'delay' => 0,
-            'extensions' => array()
+            'extensions' => array(
+                                    'buttons' =>
+                                        array(
+                                                        'colvis',
+                                                        'excel'=> array(
+                                                                        'extend' => 'excel',
+                                                                        'exportOptions' => array(
+                                                                                        // show only the following columns:
+                                                                                        'columns' => array(
+                                                                                                        '1', 
+                                                                                                        '2', 
+                                            '3', 
+                                            '4', 
+                                            '5', 
+                                            '6', 
+                                                                                                                        )
+                                                                                                        ),
+                                                                                        ),
+                                                        'pdf' => array(
+                                                                        'extend' => 'pdf',
+                                                                        'exportOptions' => array(
+                                                                                        // show only the following columns:
+                                                                                        'columns' => array(
+                                                                                                        '1', 
+                                                                                                        '2', 
+                                            '3', 
+                                            '4', 
+                                            '5', 
+                                            '6', 
+                                                                                                                        )
+                                                                                                        )
+                                                                                        ),
+                                        ),
+                                    'responsive' => true
+                                )
+            
         ));
 
         $this->ajax->set(array(
@@ -72,8 +107,8 @@ class CustomerDatatable extends AbstractDatatableView
             'search_delay' => 0,
             'state_duration' => 7200,
             'stripe_classes' => array(),
-            'class' => Style::BOOTSTRAP_3_STYLE,
-            'individual_filtering' => false,
+            'class' => Style::BOOTSTRAP_3_STYLE . ' table-condensed',
+            'individual_filtering' => true,
             'individual_filtering_position' => 'head',
             'use_integration_options' => true,
             'force_dom' => false
@@ -82,8 +117,10 @@ class CustomerDatatable extends AbstractDatatableView
         $this->columnBuilder
             ->add('id', 'column', array(
                 'title' => 'Id',
+                'width' => '40px',  
             ))
             ->add('createdAt', 'datetime', array(
+                'visible'=> false,
                 'title' => 'CreatedAt',
             ))
             ->add('name', 'column', array(
@@ -91,32 +128,37 @@ class CustomerDatatable extends AbstractDatatableView
             ))
             ->add('cuitDni', 'column', array(
                 'title' => 'CuitDni',
+                'width' => '100px',  
             ))
             ->add('address', 'column', array(
+                'visible'=> false,
                 'title' => 'Address',
             ))
             ->add('city', 'column', array(
+                'visible'=> false,
                 'title' => 'City',
             ))
             ->add('state', 'column', array(
+                'visible'=> false,
                 'title' => 'State',
             ))
             ->add('zipcode', 'column', array(
+                'visible'=> false,
                 'title' => 'Zipcode',
             ))
             ->add('phones', 'column', array(
                 'title' => 'Phones',
+                'width' => '120px',  
             ))
             ->add('email', 'column', array(
                 'title' => 'Email',
             ))
             ->add('observations', 'column', array(
+                'visible'=> false,
                 'title' => 'Observations',
             ))
-            ->add('ivaCondition.id', 'column', array(
-                'title' => 'IvaCondition Id',
-            ))
             ->add('ivaCondition.name', 'column', array(
+                'visible'=> false,
                 'title' => 'IvaCondition Name',
             ))
             ->add(null, 'action', array(
@@ -132,7 +174,7 @@ class CustomerDatatable extends AbstractDatatableView
                         'attributes' => array(
                             'rel' => 'tooltip',
                             'title' => $this->translator->trans('datatables.actions.show'),
-                            'class' => 'btn btn-primary btn-xs',
+                            'class' => 'btn btn-success btn-xs',
                             'role' => 'button'
                         ),
                     ),

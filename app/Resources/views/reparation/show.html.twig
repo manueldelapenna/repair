@@ -50,6 +50,10 @@
                 <td>{{ reparation.budget }}</td>
             </tr>
             <tr>
+                <th>Payment</th>
+                <td>{{ reparation.payment }}</td>
+            </tr>
+            <tr>
                 <th>Entrydate</th>
                 <td>{% if reparation.entryDate %}{{ reparation.entryDate|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
@@ -58,8 +62,8 @@
                 <td>{% if reparation.estimateDeliveryDate %}{{ reparation.estimateDeliveryDate|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Efectivedeliverydate</th>
-                <td>{% if reparation.efectiveDeliveryDate %}{{ reparation.efectiveDeliveryDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>Effectivedeliverydate</th>
+                <td>{% if reparation.effectiveDeliveryDate %}{{ reparation.effectiveDeliveryDate|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Observations</th>

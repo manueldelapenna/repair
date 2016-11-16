@@ -1,16 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Customer creation</h1>
+    <a class="btn btn-success" href="{{ path('customer_index') }}">{{ 'back to the list'|trans }}</a>
+    
+    <h1>{{ 'Customer creation'|trans }}</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <input class="btn btn-default col-sm-offset-2" type="submit" value="{{ 'create'|trans }}" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('customer_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}

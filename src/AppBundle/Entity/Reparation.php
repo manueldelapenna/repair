@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Reparation
@@ -91,6 +90,13 @@ class Reparation
      * @ORM\Column(name="budget", type="float", nullable=true)
      */
     private $budget;
+    
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="payment", type="float", nullable=true)
+     */
+    private $payment;
 
     /**
      * @var \DateTime
@@ -109,9 +115,9 @@ class Reparation
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="efective_delivery_date", type="datetime", nullable=true)
+     * @ORM\Column(name="effective_delivery_date", type="datetime", nullable=true)
      */
-    private $efectiveDeliveryDate;
+    private $effectiveDeliveryDate;
     
     /**
      * @var string
@@ -127,21 +133,17 @@ class Reparation
     private $customer;
     
     /**
-     * @ORM\OneToMany(targetEntity="ReparationPayment", mappedBy="reparation")
+     * @ORM\ManyToOne(targetEntity="RepairState", inversedBy="reparations")
+     * @ORM\JoinColumn(name="state_id", nullable=false, referencedColumnName="id")
      */
-    private $reparationPayments;
+    private $state;
     
-
-    public function __construct()
-    {
-        $this->reparationPayments = new ArrayCollection();
-    }
     
-    public function __toString() {
-        return "Reparacion Nº" . $this->id . " - " . $this->customer;
-        
-    }
-
+    
+//    public function __toString() {
+//        return "Reparacion Nº" . $this->id . " - " . $this->customer;
+//        
+//    }
 
     /**
      * Get id
@@ -394,51 +396,27 @@ class Reparation
     }
 
     /**
-     * Set partialPayment
+     * Set payment
      *
-     * @param float $partialPayment
+     * @param float $payment
      *
      * @return Reparation
      */
-    public function setPartialPayment($partialPayment)
+    public function setPayment($payment)
     {
-        $this->partialPayment = $partialPayment;
+        $this->payment = $payment;
 
         return $this;
     }
 
     /**
-     * Get partialPayment
+     * Get payment
      *
      * @return float
      */
-    public function getPartialPayment()
+    public function getPayment()
     {
-        return $this->partialPayment;
-    }
-
-    /**
-     * Set balanceDue
-     *
-     * @param float $balanceDue
-     *
-     * @return Reparation
-     */
-    public function setBalanceDue($balanceDue)
-    {
-        $this->balanceDue = $balanceDue;
-
-        return $this;
-    }
-
-    /**
-     * Get balanceDue
-     *
-     * @return float
-     */
-    public function getBalanceDue()
-    {
-        return $this->balanceDue;
+        return $this->payment;
     }
 
     /**
@@ -490,27 +468,27 @@ class Reparation
     }
 
     /**
-     * Set efectiveDeliveryDate
+     * Set effectiveDeliveryDate
      *
-     * @param \DateTime $efectiveDeliveryDate
+     * @param \DateTime $effectiveDeliveryDate
      *
      * @return Reparation
      */
-    public function setEfectiveDeliveryDate($efectiveDeliveryDate)
+    public function setEffectiveDeliveryDate($effectiveDeliveryDate)
     {
-        $this->efectiveDeliveryDate = $efectiveDeliveryDate;
+        $this->effectiveDeliveryDate = $effectiveDeliveryDate;
 
         return $this;
     }
 
     /**
-     * Get efectiveDeliveryDate
+     * Get effectiveDeliveryDate
      *
      * @return \DateTime
      */
-    public function getEfectiveDeliveryDate()
+    public function getEffectiveDeliveryDate()
     {
-        return $this->efectiveDeliveryDate;
+        return $this->effectiveDeliveryDate;
     }
     
      /**
@@ -534,7 +512,7 @@ class Reparation
     }
     
     /**
-     * Get ivaCondition
+     * Get customer
      *
      * @return Customer
      */
@@ -545,7 +523,7 @@ class Reparation
 
 
     /**
-     * Set ivaCondition
+     * Set customer
      *
      * @param \AppBundle\Entity\Customer $customer
      *
@@ -557,9 +535,30 @@ class Reparation
 
         return $this;
     }
+    
+    /**
+     * Get state
+     *
+     * @return RepairState
+     */
+    
+    function getState() {
+        return $this->state;
+    }
 
-    function getReparationPayments() {
-        return $this->reparationPayments;
+
+    /**
+     * Set customer
+     *
+     * @param \AppBundle\Entity\RepairState $state
+     *
+     * @return Reparation
+     */
+    public function setState(\AppBundle\Entity\Repairstate $state = null)
+    {
+        $this->state = $state;
+
+        return $this;
     }
 
 }
