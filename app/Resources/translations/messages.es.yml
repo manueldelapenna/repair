@@ -8,4 +8,19 @@ User edit: Editar Usuario
 User creation: Crear Usuario
 User: Usuario
 
+Firstname: Nombre
+Lastname: Apellido
+Enabled: Habilitado
+
 Customer creation: Crear Cliente
+Created at: Fecha de Creacion
+Name: Nombre
+Iva condition: Condición frente al IVA
+Cuit dni: CUIT/DNI
+Phones: Telefono/s
+Address: Domicilio
+Zipcode: Código Postal
+City: Ciudad
+State: Provincia
+Observations: Observaciones
+
