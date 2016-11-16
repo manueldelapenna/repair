@@ -49,7 +49,42 @@ class ReparationDatatable extends AbstractDatatableView
             'searching' => true,
             'state_save' => false,
             'delay' => 0,
-            'extensions' => array()
+            'extensions' => array(
+                                    'buttons' =>
+                                        array(
+                                                        'colvis',
+                                                        'excel'=> array(
+                                                                        'extend' => 'excel',
+                                                                        'exportOptions' => array(
+                                                                                        // show only the following columns:
+                                                                                        'columns' => array(
+                                                                                                        '1', 
+                                                                                                        '2', 
+                                            '3', 
+                                            '4', 
+                                            '5', 
+                                            '6', 
+                                                                                                                        )
+                                                                                                        ),
+                                                                                        ),
+                                                        'pdf' => array(
+                                                                        'extend' => 'pdf',
+                                                                        'exportOptions' => array(
+                                                                                        // show only the following columns:
+                                                                                        'columns' => array(
+                                                                                                        '1', 
+                                                                                                        '2', 
+                                            '3', 
+                                            '4', 
+                                            '5', 
+                                            '6', 
+                                                                                                                        )
+                                                                                                        )
+                                                                                        ),
+                                        ),
+                                    'responsive' => true
+                                )
+            
         ));
 
         $this->ajax->set(array(
@@ -73,7 +108,7 @@ class ReparationDatatable extends AbstractDatatableView
             'state_duration' => 7200,
             'stripe_classes' => array(),
             'class' => Style::BOOTSTRAP_3_STYLE,
-            'individual_filtering' => false,
+            'individual_filtering' => true,
             'individual_filtering_position' => 'head',
             'use_integration_options' => true,
             'force_dom' => false
@@ -82,84 +117,63 @@ class ReparationDatatable extends AbstractDatatableView
         $this->columnBuilder
             ->add('id', 'column', array(
                 'title' => 'Id',
+                'width' => '40px',
             ))
             ->add('brand', 'column', array(
-                'title' => 'Brand',
+                'title' => $this->translator->trans('Brand'),
+                'width' => '80px',
             ))
             ->add('model', 'column', array(
-                'title' => 'Model',
+                'title' => $this->translator->trans('Model'),
+                'width' => '80px',
             ))
             ->add('series', 'column', array(
-                'title' => 'Series',
+                'title' => $this->translator->trans('Series'),
+                'width' => '100px',
+                'visible' => false,
             ))
-            ->add('joystick', 'column', array(
-                'title' => 'Joystick',
-            ))
-            ->add('battery', 'boolean', array(
-                'title' => 'Battery',
-            ))
-            ->add('charger', 'boolean', array(
-                'title' => 'Charger',
-            ))
-            ->add('diagnostic', 'column', array(
-                'title' => 'Diagnostic',
-            ))
-            ->add('clientDescription', 'column', array(
-                'title' => 'ClientDescription',
-            ))
-            ->add('technicalReport', 'column', array(
-                'title' => 'TechnicalReport',
-            ))
-            ->add('budget', 'column', array(
-                'title' => 'Budget',
-            ))
-            ->add('payment', 'column', array(
-                'title' => 'Payment',
-            ))
+                        
             ->add('entryDate', 'datetime', array(
-                'title' => 'EntryDate',
+                'title' => $this->translator->trans('Entry date'),
+                'visible' => false,
             ))
             ->add('estimateDeliveryDate', 'datetime', array(
-                'title' => 'EstimateDeliveryDate',
+                'title' => $this->translator->trans('Estimate delivery date'),
+                'visible' => false,
             ))
             ->add('effectiveDeliveryDate', 'datetime', array(
-                'title' => 'EffectiveDeliveryDate',
-            ))
-            ->add('observations', 'column', array(
-                'title' => 'Observations',
-            ))
-            ->add('customer.id', 'column', array(
-                'title' => 'Customer Id',
-            ))
-            ->add('customer.createdAt', 'column', array(
-                'title' => 'Customer CreatedAt',
+                'title' => $this->translator->trans('Effective delivery date'),
+                'visible' => false,
             ))
             ->add('customer.name', 'column', array(
-                'title' => 'Customer Name',
+                'title' => $this->translator->trans('Customer Name'),
+                'width' => '110px',
+                
             ))
             ->add('customer.cuitDni', 'column', array(
-                'title' => 'Customer CuitDni',
+                'title' => $this->translator->trans('Cuit dni'),
+                'width' => '100px',
             ))
-            ->add('customer.address', 'column', array(
-                'title' => 'Customer Address',
-            ))
-            ->add('customer.city', 'column', array(
-                'title' => 'Customer City',
-            ))
-            ->add('customer.state', 'column', array(
-                'title' => 'Customer State',
-            ))
-            ->add('customer.zipcode', 'column', array(
-                'title' => 'Customer Zipcode',
-            ))
+            
             ->add('customer.phones', 'column', array(
-                'title' => 'Customer Phones',
+                'title' => $this->translator->trans('Phones'),
+                'visible' => false,
             ))
             ->add('customer.email', 'column', array(
-                'title' => 'Customer Email',
+                'title' => $this->translator->trans('Email'),
+                'visible' => false,
             ))
-            ->add('customer.observations', 'column', array(
-                'title' => 'Customer Observations',
+            ->add('state.name', 'column', array(
+                'title' => $this->translator->trans('State'),
+                'width' => '80px',
+            ))
+            ->add('budget', 'column', array(
+                'title' => $this->translator->trans('Budg.'),
+                'visible' => false,
+            ))
+            ->add('payment', 'column', array(
+                'title' => $this->translator->trans('Payment'),
+                'visible' => false,
             ))
             ->add(null, 'action', array(
                 'title' => $this->translator->trans('datatables.actions.title'),

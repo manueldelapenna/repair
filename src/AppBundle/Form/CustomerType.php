@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class CustomerType extends AbstractType
 {
@@ -16,7 +17,12 @@ class CustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('createdAt', DateTimeType::class)
+            ->add('createdAt', DateTimeType::class, array(
+                    'widget' => 'single_text',
+                    'format' => 'dd/MM/yyyy',
+                    'required' => false,
+                    'attr' => array('class' => 'datepicker',
+                        'data-provide' => 'datepicker', 'data-date-format' => 'dd/mm/yyyy')))
             ->add('name')
             ->add('ivaCondition')
             ->add('cuitDni')
@@ -25,7 +31,7 @@ class CustomerType extends AbstractType
             ->add('address')
             ->add('zipcode')
             ->add('city')
-            ->add('state')
+            ->add('state', TextType::class, array('label' => 'Customer.State', 'required' => false))
             ->add('observations')
             
         ;

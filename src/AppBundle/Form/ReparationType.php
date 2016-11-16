@@ -37,9 +37,24 @@ class ReparationType extends AbstractType {
                 ->add('technicalReport')
                 ->add('budget')
                 ->add('payment')
-                ->add('entryDate', DateTimeType::class)
-                ->add('estimateDeliveryDate', DateTimeType::class)
-                ->add('effectiveDeliveryDate', DateTimeType::class)
+                ->add('entryDate', DateTimeType::class, array(
+                                                                'widget' => 'single_text',
+                                                                'format' => 'dd/MM/yyyy',
+                                                                'required' => false,
+                                                                'attr' => array('class' => 'datepicker',
+                                                                    'data-provide' => 'datepicker', 'data-date-format' => 'dd/mm/yyyy')))
+                ->add('estimateDeliveryDate', DateTimeType::class, array(
+                                                                        'widget' => 'single_text',
+                                                                        'format' => 'dd/MM/yyyy',
+                                                                        'required' => false,
+                                                                        'attr' => array('class' => 'datepicker',
+                                                                            'data-provide' => 'datepicker', 'data-date-format' => 'dd/mm/yyyy')))
+                ->add('effectiveDeliveryDate', DateTimeType::class, array(
+                                                                        'widget' => 'single_text',
+                                                                        'format' => 'dd/MM/yyyy',
+                                                                        'required' => false,
+                                                                        'attr' => array('class' => 'datepicker',
+                                                                            'data-provide' => 'datepicker', 'data-date-format' => 'dd/mm/yyyy')))
                 ->add('observations')
         ;
     }

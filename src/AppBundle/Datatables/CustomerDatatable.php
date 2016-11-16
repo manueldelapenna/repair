@@ -121,45 +121,45 @@ class CustomerDatatable extends AbstractDatatableView
             ))
             ->add('createdAt', 'datetime', array(
                 'visible'=> false,
-                'title' => 'CreatedAt',
+                'title' => $this->translator->trans('Created at'),
             ))
             ->add('name', 'column', array(
-                'title' => 'Name',
+                'title' => $this->translator->trans('Name'),
             ))
             ->add('cuitDni', 'column', array(
-                'title' => 'CuitDni',
+                'title' => $this->translator->trans('Cuit dni'),
                 'width' => '100px',  
             ))
             ->add('address', 'column', array(
                 'visible'=> false,
-                'title' => 'Address',
+                'title' => $this->translator->trans('Address'),
             ))
             ->add('city', 'column', array(
                 'visible'=> false,
-                'title' => 'City',
+                'title' => $this->translator->trans('City'),
             ))
             ->add('state', 'column', array(
                 'visible'=> false,
-                'title' => 'State',
+                'title' => $this->translator->trans('State'),
             ))
             ->add('zipcode', 'column', array(
                 'visible'=> false,
-                'title' => 'Zipcode',
+                'title' => $this->translator->trans('Zipcode'),
             ))
             ->add('phones', 'column', array(
-                'title' => 'Phones',
+                'title' => $this->translator->trans('Phones'),
                 'width' => '120px',  
             ))
             ->add('email', 'column', array(
-                'title' => 'Email',
+                'title' => $this->translator->trans('Email'),
             ))
             ->add('observations', 'column', array(
                 'visible'=> false,
-                'title' => 'Observations',
+                'title' => $this->translator->trans('Observations'),
             ))
             ->add('ivaCondition.name', 'column', array(
                 'visible'=> false,
-                'title' => 'IvaCondition Name',
+                'title' => $this->translator->trans('Iva condition'),
             ))
             ->add(null, 'action', array(
                 'title' => $this->translator->trans('datatables.actions.title'),

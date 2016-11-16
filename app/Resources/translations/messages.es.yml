@@ -5,14 +5,16 @@ create: Crear
 Are you sure?: ¿Está seguro que desea borrar el elemento?
 
 User edit: Editar Usuario
-User creation: Crear Usuario
+User creation: Nuevo Usuario
 User: Usuario
 
 Firstname: Nombre
 Lastname: Apellido
 Enabled: Habilitado
 
-Customer creation: Crear Cliente
+Customer edit: Editar Cliente
+Customer creation: Nuevo Cliente
+Customer Name: Cliente
 Created at: Fecha de Creacion
 Name: Nombre
 Iva condition: Condición frente al IVA
@@ -21,6 +23,22 @@ Phones: Telefono/s
 Address: Domicilio
 Zipcode: Código Postal
 City: Ciudad
-State: Provincia
 Observations: Observaciones
-
+State: Estado
+Customer.State: Provincia
+Customer: Cliente
+Brand: Marca
+Model: Modelo
+Series: Serie
+Joystick: Joystick
+Battery: Batería
+Charger: Cargador
+Diagnostic: Diagnostico
+Client description: Descripción del cliente
+Technical report: Informe técnico
+Budget: Presupuesto
+Payment: Pago
+Budg.: Presup.
+Entry date: F. Ingreso
+Estimate delivery date: F. estimada entrega
+Effective delivery date: F. efectiva entrega
