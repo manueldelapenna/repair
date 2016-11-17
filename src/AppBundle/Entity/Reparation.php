@@ -140,10 +140,14 @@ class Reparation
     
     
     
-//    public function __toString() {
-//        return "Reparacion Nº" . $this->id . " - " . $this->customer;
-//        
-//    }
+    public function __construct()
+    {
+        $this->setEntryDate(new \DateTime("now"));
+        $this->setEstimateDeliveryDate(new \DateTime("now"));
+        $this->getEstimateDeliveryDate()->add(new \DateInterval('P7D'));
+        $this->setJoystick(0);
+        
+    }
 
     /**
      * Get id
