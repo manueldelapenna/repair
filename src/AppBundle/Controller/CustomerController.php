@@ -59,6 +59,10 @@ class CustomerController extends Controller {
             $em->persist($customer);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                    'success', 'Los cambios fueron guardados correctamente'
+            );
+
             return $this->redirectToRoute('customer_show', array('id' => $customer->getId()));
         }
 
@@ -99,6 +103,10 @@ class CustomerController extends Controller {
             $em->persist($customer);
             $em->flush();
 
+            $this->get('session')->getFlashBag()->add(
+                    'success', 'Los cambios fueron guardados correctamente'
+            );
+
             return $this->redirectToRoute('customer_edit', array('id' => $customer->getId()));
         }
 
@@ -123,6 +131,11 @@ class CustomerController extends Controller {
             $em = $this->getDoctrine()->getManager();
             $em->remove($customer);
             $em->flush();
+            
+            $this->get('session')->getFlashBag()->add(
+                    'success', 'El elemento ha sido borrado.'
+            );
+            
         }
 
         return $this->redirectToRoute('customer_index');

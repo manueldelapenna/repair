@@ -59,6 +59,10 @@ class ReparationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($reparation);
             $em->flush();
+            
+            $this->get('session')->getFlashBag()->add(
+                    'success', 'Los cambios fueron guardados correctamente'
+            );
 
             return $this->redirectToRoute('reparation_show', array('id' => $reparation->getId()));
         }
@@ -101,6 +105,10 @@ class ReparationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($reparation);
             $em->flush();
+            
+            $this->get('session')->getFlashBag()->add(
+                    'success', 'Los cambios fueron guardados correctamente'
+            );
 
             return $this->redirectToRoute('reparation_edit', array('id' => $reparation->getId()));
         }
@@ -127,6 +135,10 @@ class ReparationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($reparation);
             $em->flush();
+            
+            $this->get('session')->getFlashBag()->add(
+                    'success', 'El elemento ha sido borrado.'
+            );
         }
 
         return $this->redirectToRoute('reparation_index');

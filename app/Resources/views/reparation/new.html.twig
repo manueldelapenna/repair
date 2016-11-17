@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Reparation creation</h1>
+    <a class="btn btn-success" href="{{ path('reparation_index') }}">{{ 'back to the list'|trans }}</a>
+    
+    <h1>{{ 'Reparation creation'|trans }}</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10"><input class="btn btn-default" type="submit" value="{{ 'create'|trans }}" /></div>
+            
+        </div>
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('reparation_index') }}">Back to the list</a>
-        </li>
-    </ul>
 {% endblock %}

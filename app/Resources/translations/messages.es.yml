@@ -1,5 +1,7 @@
 edit: Editar
+show: Mostrar
 delete: Eliminar
+Actions: Acciones
 back to the list: Volver al listado
 create: Crear
 Are you sure?: ¿Está seguro que desea borrar el elemento?
@@ -12,10 +14,14 @@ Firstname: Nombre
 Lastname: Apellido
 Enabled: Habilitado
 
+Customer list: Clientes
 Customer edit: Editar Cliente
 Customer creation: Nuevo Cliente
 Customer Name: Cliente
-Created at: Fecha de Creacion
+
+Due: Deuda
+Reparation list: Reparaciones
+Created at: Fecha de alta
 Name: Nombre
 Iva condition: Condición frente al IVA
 Cuit dni: CUIT/DNI
@@ -27,6 +33,8 @@ Observations: Observaciones
 State: Estado
 Customer.State: Provincia
 Customer: Cliente
+Reparation: Reparacion
+Reparation number: Número de reparacion
 Brand: Marca
 Model: Modelo
 Series: Serie

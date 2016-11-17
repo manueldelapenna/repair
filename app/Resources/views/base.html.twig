@@ -3,7 +3,7 @@
     <meta charset="UTF-8" />
     <title>{% block title %}Seguimiento de Reparaciones{% endblock %}</title>
     {% block stylesheets %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
         <link rel="stylesheet" href="/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/daterangepicker.min.css">
         <link rel="stylesheet" href="/css/datatables.min.css">
@@ -93,7 +93,7 @@
 
             {% for flashMessage in app.session.flashbag.get('success') %}
 
-                <div class="alert alert-success">
+                <div class="alert alert-success fade in">
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                   <strong>{{ flashMessage }}</strong>
                 </div>
@@ -102,7 +102,7 @@
 
             {% for flashMessage in app.session.flashbag.get('info') %}
 
-                <div class="alert alert-info">
+                <div class="alert alert-info fade in">
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                   <strong>{{ flashMessage }}</strong>
                 </div>
@@ -111,7 +111,7 @@
 
             {% for flashMessage in app.session.flashbag.get('warning') %}
 
-                <div class="alert alert-warning">
+                <div class="alert alert-warning fade in">
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                   <strong>{{ flashMessage }}</strong>
                 </div>
@@ -120,7 +120,7 @@
 
             {% for flashMessage in app.session.flashbag.get('danger') %}
 
-                <div class="alert alert-danger">
+                <div class="alert alert-danger fade in">
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                   <strong>{{ flashMessage }}</strong>
                 </div>
@@ -130,5 +130,16 @@
             {% block body %}{% endblock %}
             {% block javascripts %}{% endblock %}
         </div>
+        
+        <script>
+            
+            $(document).ready (function(){
+                
+                $(".alert").fadeTo(5000, 500).slideUp(500, function(){
+                    $(".alert").slideUp(500);
+                })   
+             });
+            
+        </script>
     </body>
 </html>

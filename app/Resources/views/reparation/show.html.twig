@@ -1,88 +1,97 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Reparation</h1>
+       
+    <h1>{{ 'Reparation'|trans }}</h1>
+    
+    <a class="btn btn-success" href="{{ path('reparation_index') }}">{{ 'back to the list'|trans }}</a>
+    <a class="btn btn-primary" href="{{ path('reparation_edit', { 'id': reparation.id }) }}">{{ 'edit'|trans }}</a>
 
-    <table>
+    <br>
+    <br>
+    
+    <table class="table table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ 'Reparation number'|trans }}</th>
                 <td>{{ reparation.id }}</td>
             </tr>
             <tr>
-                <th>Brand</th>
+                <th>{{ 'Customer'|trans }}</th>
+                <td>
+                    {{ reparation.customer.name }}
+                    <a class="btn btn-link" href="{{ path('customer_show', { 'id': reparation.customer.id }) }}">{{ 'show'|trans }}</a>
+                </td>
+            </tr>
+            <tr>
+                <th>{{ 'State'|trans }}</th>
+                <td>{{ reparation.state.name }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Brand'|trans }}</th>
                 <td>{{ reparation.brand }}</td>
             </tr>
             <tr>
-                <th>Model</th>
+                <th>{{ 'Model'|trans }}</th>
                 <td>{{ reparation.model }}</td>
             </tr>
             <tr>
-                <th>Series</th>
+                <th>{{ 'Series'|trans }}</th>
                 <td>{{ reparation.series }}</td>
             </tr>
             <tr>
-                <th>Joystick</th>
+                <th>{{ 'Joystick'|trans }}</th>
                 <td>{{ reparation.joystick }}</td>
             </tr>
             <tr>
-                <th>Battery</th>
+                <th>{{ 'Battery'|trans }}</th>
                 <td>{% if reparation.battery %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
-                <th>Charger</th>
+                <th>{{ 'Charger'|trans }}</th>
                 <td>{% if reparation.charger %}Yes{% else %}No{% endif %}</td>
             </tr>
             <tr>
-                <th>Diagnostic</th>
+                <th>{{ 'Diagnostic'|trans }}</th>
                 <td>{{ reparation.diagnostic }}</td>
             </tr>
             <tr>
-                <th>Clientdescription</th>
+                <th>{{ 'Client description'|trans }}</th>
                 <td>{{ reparation.clientDescription }}</td>
             </tr>
             <tr>
-                <th>Technicalreport</th>
+                <th>{{ 'Technical report'|trans }}</th>
                 <td>{{ reparation.technicalReport }}</td>
             </tr>
             <tr>
-                <th>Budget</th>
-                <td>{{ reparation.budget }}</td>
+                <th>{{ 'Budget'|trans }}</th>
+                <td>$ {{ reparation.budget }}</td>
             </tr>
             <tr>
-                <th>Payment</th>
-                <td>{{ reparation.payment }}</td>
+                <th>{{ 'Payment'|trans }}</th>
+                <td>$ {{ reparation.payment }}</td>
             </tr>
             <tr>
-                <th>Entrydate</th>
-                <td>{% if reparation.entryDate %}{{ reparation.entryDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>{{ 'Due'|trans }}</th>
+                <td>$ {{ reparation.budget - reparation.payment }}</td>
             </tr>
             <tr>
-                <th>Estimatedeliverydate</th>
-                <td>{% if reparation.estimateDeliveryDate %}{{ reparation.estimateDeliveryDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>{{ 'Entry date'|trans }}</th>
+                <td>{% if reparation.entryDate %}{{ reparation.entryDate|date('d/m/Y') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Effectivedeliverydate</th>
-                <td>{% if reparation.effectiveDeliveryDate %}{{ reparation.effectiveDeliveryDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>{{ 'Estimate delivery date'|trans }}</th>
+                <td>{% if reparation.estimateDeliveryDate %}{{ reparation.estimateDeliveryDate|date('d/m/Y') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Observations</th>
+                <th>{{ 'Effective delivery date'|trans }}</th>
+                <td>{% if reparation.effectiveDeliveryDate %}{{ reparation.effectiveDeliveryDate|date('d/m/Y') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Observations'|trans }}</th>
                 <td>{{ reparation.observations }}</td>
             </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('reparation_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('reparation_edit', { 'id': reparation.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

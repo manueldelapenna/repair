@@ -7,7 +7,11 @@
 
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input class="btn btn-default col-sm-offset-2" type="submit" value="{{ 'create'|trans }}" />
+        <div class="form-group">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10"><input class="btn btn-default" type="submit" value="{{ 'create'|trans }}" /></div>
+            
+        </div>
     {{ form_end(form) }}
 
 {% endblock %}
