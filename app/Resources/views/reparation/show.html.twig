@@ -24,10 +24,6 @@
                 </td>
             </tr>
             <tr>
-                <th>{{ 'State'|trans }}</th>
-                <td>{{ reparation.state.name }}</td>
-            </tr>
-            <tr>
                 <th>{{ 'Brand'|trans }}</th>
                 <td>{{ reparation.brand }}</td>
             </tr>
@@ -86,6 +82,35 @@
             <tr>
                 <th>{{ 'Effective delivery date'|trans }}</th>
                 <td>{% if reparation.effectiveDeliveryDate %}{{ reparation.effectiveDeliveryDate|date('d/m/Y') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>{{ 'State'|trans }}</th>
+                <td><strong>{{ reparation.state.name }}</strong></td>
+            </tr>
+            <tr>
+                <th>{{ 'Repair time state'|trans }}</th>
+                <td> 
+                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::TRABAJO_RETRASADO') %}
+                        <span class="label label-danger">Trabajo retrasado</span>
+                    {% endif %}
+                    
+                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::DENTRO_TIEMPO_PACTADO') %}
+                        <span class="label label-info">Dentro del tiempo pactado</span>
+                    {% endif %}
+                    
+                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::CERCA_FECHA_ENTREGA') %}
+                        <span class="label label-warning">Cerca de fecha de entrega</span>
+                    {% endif %}
+                    
+                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::SIN_FECHA_PACTADA') %}
+                        <span class="label label-warning">Sin fecha pactada</span>
+                    {% endif %}
+                    
+                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::TRABAJO_TERMINADO_ANULADO') %}
+                        <span class="label label-success">Trabajo terminado</span>
+                    {% endif %}
+                    
+                </td>   
             </tr>
             <tr>
                 <th>{{ 'Observations'|trans }}</th>

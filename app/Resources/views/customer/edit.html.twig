@@ -3,6 +3,7 @@
 {% block body %}
     {{ form_start(delete_form) }}
         <a class="btn btn-success" href="{{ path('customer_index') }}">{{ 'back to the list'|trans }}</a>
+        <a class="btn btn-default" href="{{ path('customer_show', { 'id': customer.id }) }}">{{ 'Cancel'|trans }}</a>
         <input class="btn btn-danger" type="submit" value="{{ 'delete'|trans }}" onclick="return confirm('{{ 'Are you sure?'|trans }}')">
     {{ form_end(delete_form) }}
     

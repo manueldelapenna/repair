@@ -61,6 +61,12 @@
     <br>
             
     <h2>{{ 'Reparation list'|trans }}</h2>
+    
+    <a class="btn btn-warning" href="{{ path('reparation_new', { 'id': customer.id }) }}">{{ 'New reparation'|trans }}</a>
+    
+    <br>
+    <br>
+    <br>
 
     {% if customer.reparations | length > 0 %}
         <table class="table table-striped">
@@ -89,7 +95,9 @@
                         <td>{% if reparation.estimateDeliveryDate %}{{ reparation.estimateDeliveryDate|date('d/m/Y') }}{% endif %}</td>
                         <td>{% if reparation.effectiveDeliveryDate %}{{ reparation.effectiveDeliveryDate|date('d/m/Y') }}{% endif %}</td>
                         <td>{{ reparation.state.name }}</td>
-                        <td><a class="btn btn-success" href="{{ path('reparation_show', { 'id': reparation.id }) }}">{{ 'show'|trans }}</a></td>
+                        <td>
+                            <a class="btn btn-success" href="{{ path('reparation_show', { 'id': reparation.id }) }}">{{ 'show'|trans }}</a>
+                            <a class="btn btn-primary" href="{{ path('reparation_edit', { 'id': reparation.id }) }}">{{ 'edit'|trans }}</a></td>
                     </tr>
                 {% endfor %}
 

@@ -13,6 +13,13 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class RepairState
 {
+    const PENDIENTE_PRESUPUESTACION = 1;
+    const PENDIENTE_APROBACION = 2;
+    const EN_REPARACION = 3;
+    const REPARADO_RETIRAR = 4;
+    const ENTREGADO = 5;
+    const RECHAZADO_ANULADO = 6;
+
     /**
      * @var int
      *

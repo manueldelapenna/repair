@@ -12,6 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reparation
 {
+    const SIN_FECHA_PACTADA = 1;
+    const TRABAJO_TERMINADO_ANULADO = 2;
+    const TRABAJO_RETRASADO = 3;
+    const DENTRO_TIEMPO_PACTADO = 4;
+    const CERCA_FECHA_ENTREGA = 5;
     /**
      * @var int
      *
@@ -563,6 +568,57 @@ class Reparation
         $this->state = $state;
 
         return $this;
+    }
+    
+    
+    public function getRepairTimeState(){
+                        
+         //Si no hay que hacerle nada de trabajo
+        if(!$this->hasPendingWork()){
+            return self::TRABAJO_TERMINADO_ANULADO;
+        }
+        
+        //Si no tiene fecha estimada
+        if(is_null($this->getEstimateDeliveryDate())){
+            return self::SIN_FECHA_PACTADA;
+        }
+       
+        
+        //tiene fecha estimada y hay que hacerle trabajo
+        $now = new \DateTime("now");
+
+        if($this->getEstimateDeliveryDate() < $now){
+            return self::TRABAJO_RETRASADO;
+        }
+
+        $aux = clone $this->getEstimateDeliveryDate();
+        $aux->sub(new \DateInterval('P2D'));
+
+        if($aux > $now){
+            return self::DENTRO_TIEMPO_PACTADO;
+        }else{
+            return self::CERCA_FECHA_ENTREGA;
+        }
+        
+        
+    }
+    
+    public function hasPendingWork(){
+        $stateId = $this->getState()->getId();
+        
+        if($stateId == RepairState::PENDIENTE_PRESUPUESTACION || $stateId == RepairState::PENDIENTE_APROBACION || $stateId == RepairState::EN_REPARACION){
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public static function calcRepairTimeState($reparation){
+        
+        return 'hola';
+        //return $reparation->getState();
+        
+        
     }
 
 }

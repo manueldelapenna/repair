@@ -12,6 +12,46 @@ use Sg\DatatablesBundle\Datatable\View\Style;
  */
 class ReparationDatatable extends AbstractDatatableView
 {
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getLineFormatter()
+    {
+        $formatter = function($line){
+            $em = $this->getEntityManager();       
+            $reparation = $em->find('AppBundle\Entity\Reparation', $line['id']);
+           
+            switch ($reparation->getRepairTimeState()) {
+                case \AppBundle\Entity\Reparation::SIN_FECHA_PACTADA:
+                    $line['repairTimeState'] = '<span class="label label-warning">Sin fecha pactada</span>';
+                    break;
+                    
+                case \AppBundle\Entity\Reparation::TRABAJO_TERMINADO_ANULADO:
+                    $line['repairTimeState'] = '<span class="label label-success">Trabajo terminado</span>';
+                    break;
+                
+                case \AppBundle\Entity\Reparation::TRABAJO_RETRASADO:
+                    $line['repairTimeState'] = '<span class="label label-danger">Trabajo retrasado</span>';
+                    break;
+                    
+                case \AppBundle\Entity\Reparation::DENTRO_TIEMPO_PACTADO:
+                    $line['repairTimeState'] = '<span class="label label-info">Dentro del tiempo pactado</span>' ;
+                    break;
+                    
+                case \AppBundle\Entity\Reparation::CERCA_FECHA_ENTREGA:
+                    $line['repairTimeState'] = '<span class="label label-warning">Cerca de fecha de entrega</span>';
+                    break;
+                    
+            }
+            
+            return $line;
+
+        };
+
+        return $formatter;
+    }
+    
     /**
      * {@inheritdoc}
      */
@@ -21,17 +61,17 @@ class ReparationDatatable extends AbstractDatatableView
             'start_html' => '<div class="row"><div class="col-sm-3">',
             'end_html' => '<hr></div></div>',
             'actions' => array(
-                array(
-                    'route' => $this->router->generate('reparation_new'),
-                    'label' => $this->translator->trans('datatables.actions.new'),
-                    'icon' => 'glyphicon glyphicon-plus',
-                    'attributes' => array(
-                        'rel' => 'tooltip',
-                        'title' => $this->translator->trans('datatables.actions.new'),
-                        'class' => 'btn btn-primary',
-                        'role' => 'button'
-                    ),
-                )
+//                array(
+//                    'route' => $this->router->generate('reparation_new'),
+//                    'label' => $this->translator->trans('datatables.actions.new'),
+//                    'icon' => 'glyphicon glyphicon-plus',
+//                    'attributes' => array(
+//                        'rel' => 'tooltip',
+//                        'title' => $this->translator->trans('datatables.actions.new'),
+//                        'class' => 'btn btn-primary',
+//                        'role' => 'button'
+//                    ),
+//                )
             )
         ));
 
@@ -64,6 +104,14 @@ class ReparationDatatable extends AbstractDatatableView
                                             '4', 
                                             '5', 
                                             '6', 
+                                            '7', 
+                                            '8', 
+                                            '9', 
+                                            '10', 
+                                            '11', 
+                                            '12', 
+                                            '13', 
+                                            '14', 
                                                                                                                         )
                                                                                                         ),
                                                                                         ),
@@ -114,6 +162,8 @@ class ReparationDatatable extends AbstractDatatableView
             'force_dom' => false
         ));
 
+        $states = $this->em->getRepository('AppBundle:RepairState')->findAll();
+        
         $this->columnBuilder
             ->add('id', 'column', array(
                 'title' => 'Id',
@@ -135,7 +185,12 @@ class ReparationDatatable extends AbstractDatatableView
                         
             ->add('entryDate', 'datetime', array(
                 'title' => $this->translator->trans('Entry date'),
-                'visible' => false,
+                //'visible' => false,
+                'date_format' => 'DD/MM/Y',
+                'filter' => array('daterange', array(
+                    'class' => 'test1 test2',
+                    
+                ))
             ))
             ->add('estimateDeliveryDate', 'datetime', array(
                 'title' => $this->translator->trans('Estimate delivery date'),
@@ -165,6 +220,15 @@ class ReparationDatatable extends AbstractDatatableView
             ))
             ->add('state.name', 'column', array(
                 'title' => $this->translator->trans('State'),
+                'width' => '160px',
+                'filter' => array('select', array(
+                    'search_type' => 'eq',
+                    'select_options' => array('' => 'Todos') + $this->getCollectionAsOptionsArray($states, 'name', 'name'),
+                    'class' => 'test1 test2'
+                )),
+            ))
+            ->add('repairTimeState', 'virtual', array(
+                'title' => $this->translator->trans('Repair time state'),
                 'width' => '80px',
             ))
             ->add('budget', 'column', array(
@@ -188,7 +252,7 @@ class ReparationDatatable extends AbstractDatatableView
                         'attributes' => array(
                             'rel' => 'tooltip',
                             'title' => $this->translator->trans('datatables.actions.show'),
-                            'class' => 'btn btn-primary btn-xs',
+                            'class' => 'btn btn-success btn-xs',
                             'role' => 'button'
                         ),
                     ),

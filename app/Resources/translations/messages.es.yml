@@ -2,6 +2,7 @@ edit: Editar
 show: Mostrar
 delete: Eliminar
 Actions: Acciones
+Cancel: Cancelar
 back to the list: Volver al listado
 create: Crear
 Are you sure?: ¿Está seguro que desea borrar el elemento?
@@ -19,6 +20,7 @@ Customer edit: Editar Cliente
 Customer creation: Nuevo Cliente
 Customer Name: Cliente
 
+New reparation: Nueva reparacion
 Due: Deuda
 Reparation list: Reparaciones
 Created at: Fecha de alta
@@ -50,3 +52,4 @@ Budg.: Presup.
 Entry date: F. Ingreso
 Estimate delivery date: F. estimada entrega
 Effective delivery date: F. efectiva entrega
+Repair time state: Estado con respecto a fecha entrega

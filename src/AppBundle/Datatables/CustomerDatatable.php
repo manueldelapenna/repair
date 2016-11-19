@@ -191,7 +191,22 @@ class CustomerDatatable extends AbstractDatatableView
                             'class' => 'btn btn-primary btn-xs',
                             'role' => 'button'
                         ),
+                    ),
+                    array(
+                        'route' => 'reparation_new',
+                        'route_parameters' => array(
+                            'id' => 'id'
+                        ),
+                        'label' => $this->translator->trans('New reparation'),
+                        'icon' => 'glyphicon glyphicon-plus',
+                        'attributes' => array(
+                            'rel' => 'tooltip',
+                            'title' => $this->translator->trans('New reparation'),
+                            'class' => 'btn btn-warning btn-xs',
+                            'role' => 'button'
+                        ),
                     )
+                    
                 )
             ))
         ;

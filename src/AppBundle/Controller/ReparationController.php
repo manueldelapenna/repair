@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Reparation;
+use AppBundle\Entity\Customer;
 use AppBundle\Form\ReparationType;
 
 /**
@@ -46,12 +47,17 @@ class ReparationController extends Controller
     /**
      * Creates a new Reparation entity.
      *
-     * @Route("/new", name="reparation_new", options={"expose"=true})
+     * @Route("/new/customer/{id}", name="reparation_new", options={"expose"=true})
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
         $reparation = new Reparation();
+        $customerId = $request->get('id');
+        $em = $this->getDoctrine()->getManager();
+        $customer = $em->find('AppBundle\Entity\Customer', $customerId);
+        $reparation->setCustomer($customer);
+        
         $form = $this->createForm('AppBundle\Form\ReparationType', $reparation);
         $form->handleRequest($request);
 
@@ -110,7 +116,7 @@ class ReparationController extends Controller
                     'success', 'Los cambios fueron guardados correctamente'
             );
 
-            return $this->redirectToRoute('reparation_edit', array('id' => $reparation->getId()));
+            return $this->redirectToRoute('reparation_show', array('id' => $reparation->getId()));
         }
 
         return $this->render('reparation/edit.html.twig', array(
