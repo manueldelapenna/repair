@@ -68,3 +68,7 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/user, role: ROLE_SUPER_ADMIN }
+        - { path: ^/admin/ivacondition, role: ROLE_SUPER_ADMIN }
+        - { path: ^/admin/repairstate, role: ROLE_SUPER_ADMIN }
+        - { path: ^/admin/customer, role: ROLE_ADMIN }
+        - { path: ^/admin/reparation, role: ROLE_ADMIN }

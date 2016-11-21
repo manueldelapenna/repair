@@ -46,13 +46,19 @@
                   </div>
                   <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+                      {% if is_granted("ROLE_ADMIN") %}
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ventas <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="{{path('customer_index')}}">Clientes</a></li>
+                          <li><a href="{{path('reparation_index')}}">Reparaciones</a></li>
+                        </ul>
+                      </li>
+                      {% endif %}
                       {% if is_granted("ROLE_SUPER_ADMIN") %}
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                          <li><a href="{{path('customer_index')}}">Clientes</a></li>
-                          <li><a href="{{path('reparation_index')}}">Reparaciones</a></li>
-                          <li role="separator" class="divider"></li>
                           <li><a href="{{path('user_index')}}">Usuarios</a></li>
                         </ul>
                       </li>
