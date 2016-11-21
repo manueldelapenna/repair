@@ -187,8 +187,8 @@ class ReparationDatatable extends AbstractDatatableView
                 'title' => $this->translator->trans('Entry date'),
                 //'visible' => false,
                 'date_format' => 'DD/MM/Y',
+                'width' => '100px',
                 'filter' => array('daterange', array(
-                    'class' => 'test1 test2',
                     
                 ))
             ))
