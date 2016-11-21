@@ -33,6 +33,7 @@ class ReparationType extends AbstractType {
                 ->add('joystick')
                 ->add('battery')
                 ->add('charger')
+                ->add('cables')
                 ->add('diagnostic')
                 ->add('clientDescription')
                 ->add('technicalReport')

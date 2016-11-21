@@ -41,11 +41,15 @@
             </tr>
             <tr>
                 <th>{{ 'Battery'|trans }}</th>
-                <td>{% if reparation.battery %}Yes{% else %}No{% endif %}</td>
+                <td>{% if reparation.battery %} {{ 'Yes'|trans }} {% else %}No{% endif %}</td>
             </tr>
             <tr>
                 <th>{{ 'Charger'|trans }}</th>
-                <td>{% if reparation.charger %}Yes{% else %}No{% endif %}</td>
+                <td>{% if reparation.charger %}{{ 'Yes'|trans }}{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Cables'|trans }}</th>
+                <td>{% if reparation.cables %}{{ 'Yes'|trans }}{% else %}No{% endif %}</td>
             </tr>
             <tr>
                 <th>{{ 'Diagnostic'|trans }}</th>

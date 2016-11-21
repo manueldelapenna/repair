@@ -67,6 +67,13 @@ class Reparation
      * @ORM\Column(name="charger", type="boolean")
      */
     private $charger;
+    
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="cables", type="boolean")
+     */
+    private $cables;
 
     /**
      * @var string
@@ -306,6 +313,30 @@ class Reparation
     public function getCharger()
     {
         return $this->charger;
+    }
+    
+    /**
+     * Set cables
+     *
+     * @param boolean $cables
+     *
+     * @return Reparation
+     */
+    public function setCables($cables)
+    {
+        $this->cables = $cables;
+
+        return $this;
+    }
+
+    /**
+     * Get cables
+     *
+     * @return bool
+     */
+    public function getCables()
+    {
+        return $this->cables;
     }
 
     /**
