@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ae58e79448f8abf97ab2a92553104a47",
-    "content-hash": "872ba8473be84d9ddb2013c266662bae",
+    "hash": "e270a30fbcf9f6a29c2027e14e48a408",
+    "content-hash": "937e4c09543b927c97a86edec622f2d5",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2181,6 +2181,204 @@
             ],
             "description": "JSONP callback validator.",
             "time": "2014-01-20 22:35:06"
+        },
+        {
+            "name": "zf1/zend-cache",
+            "version": "1.12.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zf1/zend-cache.git",
+                "reference": "c3a6fc20f5d5c5ab7adc16f29f33eb5b2e00d86e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zf1/zend-cache/zipball/c3a6fc20f5d5c5ab7adc16f29f33eb5b2e00d86e",
+                "reference": "c3a6fc20f5d5c5ab7adc16f29f33eb5b2e00d86e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.11",
+                "zf1/zend-exception": "self.version"
+            },
+            "suggest": {
+                "zf1/zend-log": "Used in special situations or with special adapters"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend_Cache": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Zend Framework 1 Cache package",
+            "homepage": "http://framework.zend.com/",
+            "keywords": [
+                "ZF1",
+                "cache",
+                "framework",
+                "zend"
+            ],
+            "time": "2015-04-30 11:07:42"
+        },
+        {
+            "name": "zf1/zend-exception",
+            "version": "1.12.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zf1/zend-exception.git",
+                "reference": "ca30959d3e2f522f481a3d1459386acf1aa4ca74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zf1/zend-exception/zipball/ca30959d3e2f522f481a3d1459386acf1aa4ca74",
+                "reference": "ca30959d3e2f522f481a3d1459386acf1aa4ca74",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.11"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend_Exception": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Zend Framework 1 Exception package",
+            "homepage": "http://framework.zend.com/",
+            "keywords": [
+                "ZF1",
+                "exception",
+                "framework",
+                "zend"
+            ],
+            "time": "2015-04-30 11:10:20"
+        },
+        {
+            "name": "zf1/zend-log",
+            "version": "1.12.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zf1/zend-log.git",
+                "reference": "2610fa8cab4e12490d61ef6bfa70239b3439cc18"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zf1/zend-log/zipball/2610fa8cab4e12490d61ef6bfa70239b3439cc18",
+                "reference": "2610fa8cab4e12490d61ef6bfa70239b3439cc18",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.11",
+                "zf1/zend-exception": "self.version"
+            },
+            "suggest": {
+                "zf1/zend-wildfire": "Used in special situations or with special adapters"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend_Log": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Zend Framework 1 Log package",
+            "homepage": "http://framework.zend.com/",
+            "keywords": [
+                "ZF1",
+                "framework",
+                "log",
+                "zend"
+            ],
+            "time": "2015-04-30 11:11:42"
+        },
+        {
+            "name": "zf1/zend-memory",
+            "version": "1.12.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zf1/zend-memory.git",
+                "reference": "d02170c18e1ad93e1496cf8a73e419876d2c8bde"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zf1/zend-memory/zipball/d02170c18e1ad93e1496cf8a73e419876d2c8bde",
+                "reference": "d02170c18e1ad93e1496cf8a73e419876d2c8bde",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.11",
+                "zf1/zend-cache": "self.version",
+                "zf1/zend-exception": "self.version"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend_Memory": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Zend Framework 1 Memory package",
+            "homepage": "http://framework.zend.com/",
+            "keywords": [
+                "ZF1",
+                "framework",
+                "memory",
+                "zend"
+            ],
+            "time": "2015-04-30 11:12:12"
+        },
+        {
+            "name": "zf1/zend-pdf",
+            "version": "1.12.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zf1/zend-pdf.git",
+                "reference": "437c78be3b450128948df139ad48418288c197b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zf1/zend-pdf/zipball/437c78be3b450128948df139ad48418288c197b3",
+                "reference": "437c78be3b450128948df139ad48418288c197b3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.11",
+                "zf1/zend-exception": "self.version",
+                "zf1/zend-log": "self.version",
+                "zf1/zend-memory": "self.version"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend_Pdf": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Zend Framework 1 Pdf package",
+            "homepage": "http://framework.zend.com/",
+            "keywords": [
+                "ZF1",
+                "framework",
+                "pdf",
+                "zend"
+            ],
+            "time": "2015-04-30 11:08:07"
         }
     ],
     "packages-dev": [

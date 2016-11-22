@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Reparation;
 use AppBundle\Entity\Customer;
 use AppBundle\Form\ReparationType;
+use Zend_Pdf;
+use Zend_Pdf_Font;
 
 /**
  * Reparation controller.
@@ -93,6 +95,38 @@ class ReparationController extends Controller
             'reparation' => $reparation,
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+    
+    /**
+     * Finds and displays a Reparation entity.
+     *
+     * @Route("/{id}/export", name="reparation_show", options={"expose"=true})
+     * @Method("GET")
+     */
+    public function exportAction(Reparation $reparation)
+    {
+        
+         // Load PDF document from a file. 
+        $fileName = 'reparacion.pdf'; 
+        $pdf = Zend_Pdf::load($fileName);
+        $pages = $pdf->pages; 
+                
+        $page = $pages[0];
+        // Set font 
+        $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 20); 
+
+        // Draw text 
+        $page->drawText('Hello world!', 100, 510); 
+        
+        
+        // Get PDF document as a string 
+        $pdfData = $pdf->render(); 
+
+        header("Content-Disposition: inline; filename=reparacion.pdf"); 
+        header("Content-type: application/x-pdf"); 
+        echo $pdfData; 
+        
+ 
     }
 
     /**

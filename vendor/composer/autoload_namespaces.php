@@ -6,6 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Zend_Pdf' => array($vendorDir . '/zf1/zend-pdf/library'),
+    'Zend_Memory' => array($vendorDir . '/zf1/zend-memory/library'),
+    'Zend_Log' => array($vendorDir . '/zf1/zend-log/library'),
+    'Zend_Exception' => array($vendorDir . '/zf1/zend-exception/library'),
+    'Zend_Cache' => array($vendorDir . '/zf1/zend-cache/library'),
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
     'Sg\\DatatablesBundle' => array($vendorDir . '/sg/datatablesbundle'),
     'SensioLabs\\Security' => array($vendorDir . '/sensiolabs/security-checker'),
