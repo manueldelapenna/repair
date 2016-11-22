@@ -100,7 +100,7 @@ class ReparationController extends Controller
     /**
      * Finds and displays a Reparation entity.
      *
-     * @Route("/{id}/export", name="reparation_show", options={"expose"=true})
+     * @Route("/{id}/export", name="reparation_export", options={"expose"=true})
      * @Method("GET")
      */
     public function exportAction(Reparation $reparation)
