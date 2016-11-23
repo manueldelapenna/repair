@@ -6,6 +6,7 @@
     
     <a class="btn btn-success" href="{{ path('reparation_index') }}">{{ 'back to the list'|trans }}</a>
     <a class="btn btn-primary" href="{{ path('reparation_edit', { 'id': reparation.id }) }}">{{ 'edit'|trans }}</a>
+    <a class="btn btn-info" href="{{ path('reparation_export', { 'id': reparation.id }) }}"><span class="glyphicon glyphicon-print"></span> {{ 'Print'|trans }}</a>
 
     <br>
     <br>

@@ -72,6 +72,7 @@
         <table class="table table-striped">
             <tbody>
                 <tr>
+                    <th>Nº</th>
                     <th>{{ 'Entry date'|trans }}</th>
                     <th>{{ 'Brand'|trans }}</th>
                     <th>{{ 'Model'|trans }}</th>
@@ -86,6 +87,7 @@
 
                 {% for reparation in customer.reparations %}
                     <tr>
+                        <td>{{ reparation.id }}</td>
                         <td>{% if reparation.entryDate %}{{ reparation.entryDate|date('d/m/Y') }}{% endif %}</td>
                         <td>{{ reparation.brand }}</td>
                         <td>{{ reparation.model }}</td>
@@ -97,7 +99,9 @@
                         <td>{{ reparation.state.name }}</td>
                         <td>
                             <a class="btn btn-success" href="{{ path('reparation_show', { 'id': reparation.id }) }}">{{ 'show'|trans }}</a>
-                            <a class="btn btn-primary" href="{{ path('reparation_edit', { 'id': reparation.id }) }}">{{ 'edit'|trans }}</a></td>
+                            <a class="btn btn-primary" href="{{ path('reparation_edit', { 'id': reparation.id }) }}">{{ 'edit'|trans }}</a>
+                            <a class="btn btn-info" href="{{ path('reparation_export', { 'id': reparation.id }) }}"><span class="glyphicon glyphicon-print"></span> {{ 'Print'|trans }}</a>
+                        </td>
                     </tr>
                 {% endfor %}
 

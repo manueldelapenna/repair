@@ -651,6 +651,34 @@ class Reparation
         
         
     }
+    
+    public static function separateStringInLines($string, $lineMax){
+        $lineLength = 0;
+        $line = '';
+        $lineCount = 0;
+        $result = array();
+        $words = explode(' ', $string);
+        foreach ($words as $word){
+            
+            if(($lineLength + strlen($word) + 1) < $lineMax){
+                $lineLength += strlen($word) + 1;
+                if($line == ''){
+                    $line = $word;
+                }else{
+                    $line = $line . ' '. $word;
+                }
+            }else{
+                $result[$lineCount] = $line;
+                $lineLength = strlen($word);
+                $line = $word;
+                $lineCount++;
+            }
+            
+            
+        }
+        $result[$lineCount] = $line;
+        return $result;
+    }
 
 }
 

@@ -1,6 +1,12 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>{{ 'Reparation list'|trans }}</h1>
+    <h1>{{ 'Reparation list'|trans }} ({{ 'reparation.all' |trans }})</h1>
+    <a href="{{ path('reparation_index') }}"><span class="label label-default">Todas</span></a>
+    <a href="{{ path('reparation_index') }}"><span class="label label-danger">Trabajo retrasado</span></a>
+    <a href="{{ path('reparation_index') }}"><span class="label label-info">Dentro del tiempo pactado</span></a>
+    <a href="{{ path('reparation_index') }}"><span class="label label-warning">Cerca de fecha de entrega</span></a>
+    <a href="{{ path('reparation_index') }}"><span class="label label-warning">Sin fecha pactada</span></a>
+    <a href="{{ path('reparation_index') }}"><span class="label label-success">Trabajo terminado</span></a>
     {{ datatable_render(datatable) }}
 {% endblock %}

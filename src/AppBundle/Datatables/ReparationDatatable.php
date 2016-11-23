@@ -269,7 +269,21 @@ class ReparationDatatable extends AbstractDatatableView
                             'class' => 'btn btn-primary btn-xs',
                             'role' => 'button'
                         ),
-                    )
+                    ),
+                    array(
+                        'route' => 'reparation_export',
+                        'route_parameters' => array(
+                            'id' => 'id'
+                        ),
+                        'label' => $this->translator->trans('Print'),
+                        'icon' => 'glyphicon glyphicon-print',
+                        'attributes' => array(
+                            'rel' => 'tooltip',
+                            'title' => $this->translator->trans('Export'),
+                            'class' => 'btn btn-info btn-xs',
+                            'role' => 'button'
+                        )
+                    ),
                 )
             ))
         ;

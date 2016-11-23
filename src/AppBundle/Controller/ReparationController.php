@@ -107,22 +107,92 @@ class ReparationController extends Controller
     {
         
          // Load PDF document from a file. 
-        $fileName = 'reparacion.pdf'; 
+        $fileName = 'PdfTemplates/reparacion.pdf'; 
         $pdf = Zend_Pdf::load($fileName);
         $pages = $pdf->pages; 
                 
         $page = $pages[0];
+        
         // Set font 
-        $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 20); 
+        $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 10); 
 
         // Draw text 
-        $page->drawText('Hello world!', 100, 510); 
+        $page->drawText($reparation->getCustomer()->getName(), 155, 719); 
+        $page->drawText($reparation->getCustomer()->getCuitDni(), 155, 697); 
+        $page->drawText($reparation->getCustomer()->getAddress(), 155, 676); 
+        $page->drawText($reparation->getCustomer()->getCity(), 155, 655); 
+        $page->drawText($reparation->getCustomer()->getZipcode(), 290, 655); 
+        $page->drawText($reparation->getCustomer()->getState(), 414, 655); 
+        $page->drawText($reparation->getCustomer()->getPhones(), 155, 634); 
         
+        $page->drawText(date('d/m/Y'), 190, 596); 
+        
+        $page->drawText($reparation->getId(), 155, 559); 
+
+        $page->drawText($reparation->getBrand(), 155, 538); 
+        $page->drawText($reparation->getModel(), 395, 538); 
+
+        $page->drawText($reparation->getSeries(), 155, 516); 
+        
+        $page->drawText($reparation->getJoystick(), 155, 495);
+        $page->drawText(($reparation->getBattery()) ? 'Sí' : 'No', 242, 495);
+        $page->drawText(($reparation->getCharger()) ? 'Sí' : 'No', 396, 495);
+        $page->drawText(($reparation->getCables()) ? 'Sí' : 'No', 484, 495);
+        
+        $page->drawText(($reparation->getEntryDate()) ? $reparation->getEntryDate()->format('d/m/Y') : '-', 155, 466);
+        $page->drawText(($reparation->getEstimateDeliveryDate()) ? $reparation->getEstimateDeliveryDate()->format('d/m/Y') : '-', 330, 466);
+        $page->drawText(($reparation->getEffectiveDeliveryDate()) ? $reparation->getEffectiveDeliveryDate()->format('d/m/Y') : '-', 484, 466);
+        
+        $lines = Reparation::separateStringInLines($reparation->getDiagnostic(), 80);
+        $y = 435;
+        $i = 1;
+        foreach($lines as $line){
+            if($i<=3){
+                $page->drawText($line, 155, $y);
+                $y-=10;
+            }
+            $i++;
+        }
+        
+        
+        
+        $lines = Reparation::separateStringInLines($reparation->getClientDescription(), 80);
+        $y = 395;
+        $i = 1;
+        foreach($lines as $line){
+            if($i<=3){
+                $page->drawText($line, 155, $y);
+                $y-=10;
+            }
+            $i++;
+        }
+        
+        
+        $lines = Reparation::separateStringInLines($reparation->getTechnicalReport(), 80);
+        $y = 355;
+        $i = 1;
+        foreach($lines as $line){
+            if($i<=3){
+                $page->drawText($line, 155, $y);
+                $y-=10;
+            }
+            $i++;
+        }
+        
+        $budget = '$ '. (is_null($reparation->getBudget()) ? '0' : $reparation->getBudget());
+        $payment = '$ '. (is_null($reparation->getPayment()) ? '0' : $reparation->getPayment());
+        
+        $page->drawText($budget. ' .-' , 155, 312); 
+        $page->drawText($payment . ' .-', 328, 312); 
+        $page->drawText('$ ' . ($reparation->getBudget() - $reparation->getPayment()) . ' .-' , 484, 312); 
+                       
         
         // Get PDF document as a string 
         $pdfData = $pdf->render(); 
+        
+        $name = $reparation->getId() . '-reparacion.pdf';
 
-        header("Content-Disposition: inline; filename=reparacion.pdf"); 
+        header("Content-Disposition: inline; filename=$name"); 
         header("Content-type: application/x-pdf"); 
         echo $pdfData; 
         
