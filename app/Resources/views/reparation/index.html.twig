@@ -1,12 +1,17 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-    <h1>{{ 'Reparation list'|trans }} ({{ 'reparation.all' |trans }})</h1>
-    <a href="{{ path('reparation_index') }}"><span class="label label-default">Todas</span></a>
-    <a href="{{ path('reparation_index') }}"><span class="label label-danger">Trabajo retrasado</span></a>
-    <a href="{{ path('reparation_index') }}"><span class="label label-info">Dentro del tiempo pactado</span></a>
-    <a href="{{ path('reparation_index') }}"><span class="label label-warning">Cerca de fecha de entrega</span></a>
-    <a href="{{ path('reparation_index') }}"><span class="label label-warning">Sin fecha pactada</span></a>
-    <a href="{{ path('reparation_index') }}"><span class="label label-success">Trabajo terminado</span></a>
+    {% block title_description %} <h1><span class="label label-default">{{ 'reparation.all' |trans }}</span></h1>{% endblock %}
+    
+    <br>
+    <div class="btn-group">
+        <a class="btn btn-default" href="{{ path('reparation_index') }}">Todas</a>
+        <a class="btn btn-danger" href="{{ path('reparation_delayed') }}">Trabajo retrasado</a>
+        <a class="btn btn-info" href="{{ path('reparation_ok') }}">Dentro del tiempo pactado</a>
+        <a class="btn btn-warning" href="{{ path('reparation_warning') }}">Cerca de fecha de entrega</a>
+        <a class="btn btn-warning" href="{{ path('reparation_without_date') }}">Sin fecha pactada</a>
+        <a class="btn btn-success" href="{{ path('reparation_finished') }}">Trabajo terminado</a>
+    </div>
+    
     {{ datatable_render(datatable) }}
 {% endblock %}

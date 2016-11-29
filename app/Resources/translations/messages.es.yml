@@ -37,6 +37,7 @@ State: Estado
 Customer.State: Provincia
 Customer: Cliente
 Reparation: Reparacion
+Reparation edit: Editar reparación
 Reparation number: Número de reparacion
 Brand: Marca
 Model: Modelo
@@ -58,4 +59,9 @@ Repairstate edit: Editar estado de reparacion
 Ivaciondition edit: Editar condicion frente al IVA
 
 Print: Imprimir
-reparation.all: todas
+reparation.all: Todas las reparaciones
+reparation.delayed: Reparaciones retrasadas
+reparation.ok: Reparaciones dentro del tiempo pactado
+reparation.warning: Reparaciones cerca de tiempo de entrega
+reparation.without_date: Reparaciones sin fecha pactada
+reparation.finished: Reparaciones terminadas

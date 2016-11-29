@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Reparation;
 use AppBundle\Entity\Customer;
+use AppBundle\Entity\RepairState;
 use AppBundle\Form\ReparationType;
 use Zend_Pdf;
 use Zend_Pdf_Font;
@@ -27,7 +28,7 @@ class ReparationController extends Controller
      */
     public function indexAction() {
         $datatable = $this->get('app.datatable.reparation');
-        $datatable->buildDatatable();
+        $datatable->buildDatatable(array('results' => 'all'));
 
         return $this->render('reparation/index.html.twig', array(
                     'datatable' => $datatable,
@@ -39,11 +40,236 @@ class ReparationController extends Controller
      */
     public function indexResultsAction() {
         $datatable = $this->get('app.datatable.reparation');
-        $datatable->buildDatatable();
+        $datatable->buildDatatable(array('results' => 'all'));
 
         $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
 
         return $query->getResponse();
+    }
+    
+    /**
+     * Lists delayed Reparation entities.
+     *
+     * @Route("/delayed", name="reparation_delayed")
+     * @Method("GET")
+     */
+    public function delayedAction() {
+        $datatable = $this->get('app.datatable.reparation');
+        $datatable->buildDatatable(array('results' => 'delayed'));
+
+        return $this->render('reparation/delayed.html.twig', array(
+                    'datatable' => $datatable,
+                    'timeState' => 'delayed',
+        ));
+    }
+
+    /**
+     * @Route("/delayed_results", name="reparation_delayed_results")
+     */
+    public function delayedResultsAction() {
+        $datatable = $this->get('app.datatable.reparation');
+        $datatable->buildDatatable(array('results' => 'delayed'));
+        
+        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
+
+        $function = function($qb)
+        {
+            $now = new \DateTime("now");
+            
+            $qb->andWhere("state.id <> :st1");
+            $qb->setParameter('st1', RepairState::ENTREGADO);
+            $qb->andWhere("state.id <> :st2");
+            $qb->setParameter('st2', RepairState::RECHAZADO_ANULADO);
+            $qb->andWhere("state.id <> :st3");
+            $qb->setParameter('st3', RepairState::REPARADO_RETIRAR);
+            $qb->andWhere("reparation.estimateDeliveryDate is not null");
+            $qb->andWhere("reparation.estimateDeliveryDate < :day");
+            $qb->setParameter('day', $now);
+        };
+
+        $query->addWhereAll($function);
+
+        return $query->getResponse();
+       
+    }
+    
+    /**
+     * Lists on time Reparation entities.
+     *
+     * @Route("/on_time", name="reparation_ok")
+     * @Method("GET")
+     */
+    public function onTimeAction() {
+        $datatable = $this->get('app.datatable.reparation');
+        $datatable->buildDatatable(array('results' => 'ok'));
+
+        return $this->render('reparation/on_time.html.twig', array(
+                    'datatable' => $datatable,
+        ));
+    }
+
+    /**
+     * @Route("/ok_results", name="reparation_ok_results")
+     */
+    public function onTimeResultsAction() {
+        $datatable = $this->get('app.datatable.reparation');
+        $datatable->buildDatatable(array('results' => 'ok'));
+        
+        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
+
+        $function = function($qb)
+        {
+            $now = new \DateTime("now");
+            
+            $qb->andWhere("state.id <> :st1");
+            $qb->setParameter('st1', RepairState::ENTREGADO);
+            $qb->andWhere("state.id <> :st2");
+            $qb->setParameter('st2', RepairState::RECHAZADO_ANULADO);
+            $qb->andWhere("state.id <> :st3");
+            $qb->setParameter('st3', RepairState::REPARADO_RETIRAR);
+            $qb->andWhere("reparation.estimateDeliveryDate is not null");
+            $qb->andWhere("DATE_SUB(reparation.estimateDeliveryDate, 2, 'day') > :day");
+            $qb->setParameter('day', $now);
+            
+        };
+
+        $query->addWhereAll($function);
+
+        return $query->getResponse();
+       
+    }
+    
+    /**
+     * Lists warning Reparation entities.
+     *
+     * @Route("/warning", name="reparation_warning")
+     * @Method("GET")
+     */
+    public function warningAction() {
+        $datatable = $this->get('app.datatable.reparation');
+        $datatable->buildDatatable(array('results' => 'warning'));
+
+        return $this->render('reparation/warning.html.twig', array(
+                    'datatable' => $datatable,
+        ));
+    }
+
+    /**
+     * @Route("/warning_results", name="reparation_warning_results")
+     */
+    public function warningResultsAction() {
+        $datatable = $this->get('app.datatable.reparation');
+        $datatable->buildDatatable(array('results' => 'warning'));
+        
+        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
+
+        $function = function($qb)
+        {
+            $now = new \DateTime("now");
+            
+            $qb->andWhere("state.id <> :st1");
+            $qb->setParameter('st1', RepairState::ENTREGADO);
+            $qb->andWhere("state.id <> :st2");
+            $qb->setParameter('st2', RepairState::RECHAZADO_ANULADO);
+            $qb->andWhere("state.id <> :st3");
+            $qb->setParameter('st3', RepairState::REPARADO_RETIRAR);
+            $qb->andWhere("reparation.estimateDeliveryDate is not null");
+            $qb->andWhere("reparation.estimateDeliveryDate >= :day1");
+            $qb->setParameter('day1', $now);
+            $qb->andWhere("DATE_SUB(reparation.estimateDeliveryDate, 2, 'day') <= :day2");
+            $qb->setParameter('day2', $now);
+            
+            
+        };
+
+        $query->addWhereAll($function);
+
+        return $query->getResponse();
+       
+    }
+    
+    /**
+     * Lists without date Reparation entities.
+     *
+     * @Route("/without_date", name="reparation_without_date")
+     * @Method("GET")
+     */
+    public function withoutDateAction() {
+        $datatable = $this->get('app.datatable.reparation');
+        $datatable->buildDatatable(array('results' => 'without_date'));
+
+        return $this->render('reparation/without_date.html.twig', array(
+                    'datatable' => $datatable,
+        ));
+    }
+
+    /**
+     * @Route("/without_date_results", name="reparation_without_date_results")
+     */
+    public function withoutDateResultsAction() {
+        $datatable = $this->get('app.datatable.reparation');
+        $datatable->buildDatatable(array('results' => 'without_date'));
+        
+        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
+
+        $function = function($qb)
+        {
+            
+            $qb->andWhere("state.id <> :st1");
+            $qb->setParameter('st1', RepairState::ENTREGADO);
+            $qb->andWhere("state.id <> :st2");
+            $qb->setParameter('st2', RepairState::RECHAZADO_ANULADO);
+            $qb->andWhere("state.id <> :st3");
+            $qb->setParameter('st3', RepairState::REPARADO_RETIRAR);
+            $qb->andWhere("reparation.estimateDeliveryDate is null");
+            
+        };
+
+        $query->addWhereAll($function);
+
+        return $query->getResponse();
+       
+    }
+    
+    /**
+     * Lists finished Reparation entities.
+     *
+     * @Route("/finished", name="reparation_finished")
+     * @Method("GET")
+     */
+    public function finishedAction() {
+        $datatable = $this->get('app.datatable.reparation');
+        $datatable->buildDatatable(array('results' => 'finished'));
+
+        return $this->render('reparation/finished.html.twig', array(
+                    'datatable' => $datatable,
+        ));
+    }
+
+    /**
+     * @Route("/finished_results", name="reparation_finished_results")
+     */
+    public function finishedResultsAction() {
+        $datatable = $this->get('app.datatable.reparation');
+        $datatable->buildDatatable(array('results' => 'finished'));
+        
+        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
+
+        $function = function($qb)
+        {
+            $qb->andWhere("state.id <> :st1");
+            $qb->setParameter('st1', RepairState::PENDIENTE_PRESUPUESTACION);
+            $qb->andWhere("state.id <> :st2");
+            $qb->setParameter('st2', RepairState::PENDIENTE_APROBACION);
+            $qb->andWhere("state.id <> :st3");
+            $qb->setParameter('st3', RepairState::EN_REPARACION);
+            
+        };
+
+        $query->addWhereAll($function);
+
+        return $query->getResponse();
+       
     }
 
     /**

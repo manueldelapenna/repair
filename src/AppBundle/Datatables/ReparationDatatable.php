@@ -135,10 +135,46 @@ class ReparationDatatable extends AbstractDatatableView
             
         ));
 
-        $this->ajax->set(array(
-            'url' => $this->router->generate('reparation_results'),
-            'type' => 'GET'
-        ));
+        
+        
+    switch ($options['results']) {
+        case 'delayed':
+            $this->ajax->set(array(
+                'url' => $this->router->generate('reparation_delayed_results'),
+                'type' => 'GET'
+            ));
+            break;
+        case 'ok':
+            $this->ajax->set(array(
+                'url' => $this->router->generate('reparation_ok_results'),
+                'type' => 'GET'
+            ));
+            break;
+        case 'warning':
+            $this->ajax->set(array(
+                'url' => $this->router->generate('reparation_warning_results'),
+                'type' => 'GET'
+            ));
+            break;
+        case 'without_date':
+            $this->ajax->set(array(
+                'url' => $this->router->generate('reparation_without_date_results'),
+                'type' => 'GET'
+            ));
+            break;
+        case 'finished':
+            $this->ajax->set(array(
+                'url' => $this->router->generate('reparation_finished_results'),
+                'type' => 'GET'
+            ));
+            break;
+        default:
+            $this->ajax->set(array(
+                'url' => $this->router->generate('reparation_results'),
+                'type' => 'GET'
+             ));
+    }
+
 
         $this->options->set(array(
             'display_start' => 0,
