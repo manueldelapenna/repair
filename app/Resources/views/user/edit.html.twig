@@ -18,11 +18,23 @@
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <div class="col-sm-2"></div>
-        <div class="col-sm-10"><button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-edit"></span> {{ 'edit'|trans }}</button></div>
+        <div class='form-group'>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-10">
+                <span class="label label-success">Si no se marca ningún rol el usuario no entra al sistema de ventas</span>
+                <br>
+                <span class="label label-warning">ROLE_ADMIN permite el acceso al sistema pero no al manejo de usuarios ni tablas de referencias</span>
+                <br>
+                <span class="label label-danger">ROLE_SUPER_ADMIN acceso total al sistema</span>
+                <br>
+                <br>
+                <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-edit"></span> {{ 'edit'|trans }}</button>
+                
+            </div>
+        </div>
     {{ form_end(edit_form) }}
     
-    
+            
     
 
 {% endblock %}

@@ -12,6 +12,7 @@ User edit: Editar Usuario
 User creation: Nuevo Usuario
 User: Usuario
 
+Username: Nombre de usuario
 Firstname: Nombre
 Lastname: Apellido
 Enabled: Habilitado
@@ -36,6 +37,7 @@ Observations: Observaciones
 State: Estado
 Customer.State: Provincia
 Customer: Cliente
+Customer Number: Numero de cliente
 Reparation: Reparacion
 Reparation edit: Editar reparación
 Reparation number: Número de reparación

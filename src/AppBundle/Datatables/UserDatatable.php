@@ -51,40 +51,27 @@ class UserDatatable extends AbstractDatatableView
             'state_save' => false,
             'delay' => 0,
             'extensions' => array(
-			        			'buttons' =>
-			        				array(
-			        						'colvis',
-			        						'excel'=> array(
-			        								'extend' => 'excel',
-			        								'exportOptions' => array(
-			        										// show only the following columns:
-			        										'columns' => array(
-			        												'1', 
-			        												'2', 
-                                                                    '3', 
-                                                                    '4', 
-                                                                    '5', 
-                                                                    '6', 
-							        										)
-							        								),
-							        						),
-			        						'pdf' => array(
-			        								'extend' => 'pdf',
-			        								'exportOptions' => array(
-			        										// show only the following columns:
-			        										'columns' => array(
-			        												'1', 
-			        												'2', 
-                                                                    '3', 
-                                                                    '4', 
-                                                                    '5', 
-                                                                    '6', 
-							        										)
-							        								)
-							        						),
-			        				),
-        						'responsive' => true
-        						)
+                                'buttons' =>array(
+                                                    //'colvis',
+                                                    'excel'=> array(
+                                                                    'extend' => 'excel',
+                                                                    'text' => 'Exportar Excel',
+                                                                    'exportOptions' => array(
+                                                                                            // show only the following columns:
+                                                                                            'columns' => array(
+                                                                                                                '0',
+                                                                                                                '1', 
+                                                                                                                '2', 
+                                                                                                                '3', 
+                                                                                                                '4', 
+                                                                                                                '5', 
+                                                                                                                '6', 
+                                                                                                               )
+                                                                                            ),
+                                                                    ),
+                                                ),
+                                'responsive' => true
+                                )
         ));
 
         $this->ajax->set(array(
@@ -96,11 +83,11 @@ class UserDatatable extends AbstractDatatableView
             'display_start' => 0,
             'defer_loading' => -1,
             'dom' => 'lfrtip',
-            'length_menu' => array(10, 25, 50, 100),
+            'length_menu' => array(50, 100, 200),
             'order_classes' => true,
             'order' => array(array(0, 'asc')),
             'order_multi' => true,
-            'page_length' => 10,
+            'page_length' => 50,
             'paging_type' => Style::FULL_NUMBERS_PAGINATION,
             'renderer' => '',
             'scroll_collapse' => false,

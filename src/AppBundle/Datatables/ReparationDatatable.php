@@ -45,6 +45,8 @@ class ReparationDatatable extends AbstractDatatableView
                     
             }
             
+            $line['due'] = $line['budget'] - $line['payment'];
+            
             return $line;
 
         };
@@ -90,49 +92,37 @@ class ReparationDatatable extends AbstractDatatableView
             'state_save' => false,
             'delay' => 0,
             'extensions' => array(
-                                    'buttons' =>
-                                        array(
-                                                        'colvis',
-                                                        'excel'=> array(
-                                                                        'extend' => 'excel',
-                                                                        'exportOptions' => array(
-                                                                                        // show only the following columns:
-                                                                                        'columns' => array(
-                                                                                                        '1', 
-                                                                                                        '2', 
-                                            '3', 
-                                            '4', 
-                                            '5', 
-                                            '6', 
-                                            '7', 
-                                            '8', 
-                                            '9', 
-                                            '10', 
-                                            '11', 
-                                            '12', 
-                                            '13', 
-                                            '14', 
-                                                                                                                        )
-                                                                                                        ),
-                                                                                        ),
-                                                        'pdf' => array(
-                                                                        'extend' => 'pdf',
-                                                                        'exportOptions' => array(
-                                                                                        // show only the following columns:
-                                                                                        'columns' => array(
-                                                                                                        '1', 
-                                                                                                        '2', 
-                                            '3', 
-                                            '4', 
-                                            '5', 
-                                            '6', 
-                                                                                                                        )
-                                                                                                        )
-                                                                                        ),
-                                        ),
-                                    'responsive' => true
+                                'buttons' =>array(
+                                                    //'colvis',
+                                                    'excel'=> array(
+                                                                    'extend' => 'excel',
+                                                                    'text' => 'Exportar Excel',
+                                                                    'exportOptions' => array(
+                                                                                            // show only the following columns:
+                                                                                            'columns' => array(
+                                                                                                                '0',
+                                                                                                                '1', 
+                                                                                                                '2', 
+                                                                                                                '3', 
+                                                                                                                '4', 
+                                                                                                                '5', 
+                                                                                                                '6',
+                                                                                                                '7',
+                                                                                                                '8',
+                                                                                                                '9',
+                                                                                                                '10',
+                                                                                                                '11',
+                                                                                                                '12',
+                                                                                                                '13',
+                                                                                                                '14',
+                                                                                                                '15',
+                                                                                                                '16', 
+                                                                                                               )
+                                                                                            ),
+                                                                    ),
+                                                ),
+                                'responsive' => true
                                 )
-            
         ));
 
         
@@ -180,11 +170,11 @@ class ReparationDatatable extends AbstractDatatableView
             'display_start' => 0,
             'defer_loading' => -1,
             'dom' => 'lfrtip',
-            'length_menu' => array(10, 25, 50, 100),
+            'length_menu' => array(50, 100, 200),
             'order_classes' => true,
             'order' => array(array(0, 'asc')),
             'order_multi' => true,
-            'page_length' => 10,
+            'page_length' => 50,
             'paging_type' => Style::FULL_NUMBERS_PAGINATION,
             'renderer' => '',
             'scroll_collapse' => false,
@@ -202,7 +192,7 @@ class ReparationDatatable extends AbstractDatatableView
         
         $this->columnBuilder
             ->add('id', 'column', array(
-                'title' => 'Id',
+                'title' => '#',
                 'width' => '40px',
             ))
             ->add('brand', 'column', array(
@@ -228,7 +218,7 @@ class ReparationDatatable extends AbstractDatatableView
             ))
             ->add('estimateDeliveryDate', 'datetime', array(
                 'title' => $this->translator->trans('Estimate delivery date'),
-                //'visible' => false,
+                'visible' => false,
                 'date_format' => 'DD/MM/Y',
                 'width' => '80px',
                 'filter' => array('daterange', array())
@@ -236,6 +226,12 @@ class ReparationDatatable extends AbstractDatatableView
             ->add('effectiveDeliveryDate', 'datetime', array(
                 'title' => $this->translator->trans('Effective delivery date'),
                 'visible' => false,
+            ))
+                
+            ->add('customer.id', 'column', array(
+                'title' => $this->translator->trans('Customer Number'),
+                'visible' => false,
+                
             ))
             ->add('customer.name', 'column', array(
                 'title' => $this->translator->trans('Customer Name'),
@@ -261,7 +257,6 @@ class ReparationDatatable extends AbstractDatatableView
                 'filter' => array('select', array(
                     'search_type' => 'eq',
                     'select_options' => array('' => 'Todos') + $this->getCollectionAsOptionsArray($states, 'name', 'name'),
-                    'class' => 'test1 test2'
                 )),
             ))
             ->add('repairTimeState', 'virtual', array(
@@ -274,6 +269,11 @@ class ReparationDatatable extends AbstractDatatableView
             ))
             ->add('payment', 'column', array(
                 'title' => $this->translator->trans('Payment'),
+                'visible' => false,
+            ))
+            
+            ->add('due', 'virtual', array(
+                'title' => $this->translator->trans('Due'),
                 'visible' => false,
             ))
             ->add(null, 'action', array(

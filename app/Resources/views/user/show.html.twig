@@ -1,5 +1,4 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
 
     {{ form_start(delete_form) }}
@@ -20,20 +19,24 @@
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
-                <th>Username</th>
+                <th>{{'Username' | trans}}</th>
                 <td>{{ user.username }}</td>
             </tr>
             <tr>
-                <th>Firstname</th>
+                <th>{{'Firstname' | trans}}</th>
                 <td>{{ user.firstname }}</td>
             </tr>
             <tr>
-                <th>Lastname</th>
+                <th>{{'Lastname' | trans}}</th>
                 <td>{{ user.lastname }}</td>
             </tr>
             <tr>
                 <th>Email</th>
-                <td>{{ user.email }}</td>
+                <td>{{ user.email | trans }}</td>
+            </tr>
+            <tr>
+                <th>{{'Enabled' | trans}}</th>
+                <td>{% if user.enabled %} {{ 'Yes'|trans }}{%else%}{{ 'No'|trans }} {%endif%} </td>
             </tr>
         </tbody>
     </table>

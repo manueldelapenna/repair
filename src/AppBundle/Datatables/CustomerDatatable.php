@@ -50,41 +50,33 @@ class CustomerDatatable extends AbstractDatatableView
             'state_save' => false,
             'delay' => 0,
             'extensions' => array(
-                                    'buttons' =>
-                                        array(
-                                                        'colvis',
-                                                        'excel'=> array(
-                                                                        'extend' => 'excel',
-                                                                        'exportOptions' => array(
-                                                                                        // show only the following columns:
-                                                                                        'columns' => array(
-                                                                                                        '1', 
-                                                                                                        '2', 
-                                            '3', 
-                                            '4', 
-                                            '5', 
-                                            '6', 
-                                                                                                                        )
-                                                                                                        ),
-                                                                                        ),
-                                                        'pdf' => array(
-                                                                        'extend' => 'pdf',
-                                                                        'exportOptions' => array(
-                                                                                        // show only the following columns:
-                                                                                        'columns' => array(
-                                                                                                        '1', 
-                                                                                                        '2', 
-                                            '3', 
-                                            '4', 
-                                            '5', 
-                                            '6', 
-                                                                                                                        )
-                                                                                                        )
-                                                                                        ),
-                                        ),
-                                    'responsive' => true
+                                'buttons' =>array(
+                                                    //'colvis',
+                                                    'excel'=> array(
+                                                                    'extend' => 'excel',
+                                                                    'text' => 'Exportar Excel',
+                                                                    'exportOptions' => array(
+                                                                                            // show only the following columns:
+                                                                                            'columns' => array(
+                                                                                                                '0',
+                                                                                                                '1', 
+                                                                                                                '2', 
+                                                                                                                '3', 
+                                                                                                                '4', 
+                                                                                                                '5', 
+                                                                                                                '6',
+                                                                                                                '7',
+                                                                                                                '8',
+                                                                                                                '9',
+                                                                                                                '10',
+                                                                                                                '11', 
+                                                                                                               )
+                                                                                            ),
+                                                                    ),
+                                                    
+                                                ),
+                                'responsive' => true
                                 )
-            
         ));
 
         $this->ajax->set(array(
@@ -96,11 +88,11 @@ class CustomerDatatable extends AbstractDatatableView
             'display_start' => 0,
             'defer_loading' => -1,
             'dom' => 'lfrtip',
-            'length_menu' => array(10, 25, 50, 100),
+            'length_menu' => array(50, 100, 200),
             'order_classes' => true,
             'order' => array(array(0, 'asc')),
             'order_multi' => true,
-            'page_length' => 10,
+            'page_length' => 50,
             'paging_type' => Style::FULL_NUMBERS_PAGINATION,
             'renderer' => '',
             'scroll_collapse' => false,
@@ -113,40 +105,56 @@ class CustomerDatatable extends AbstractDatatableView
             'use_integration_options' => true,
             'force_dom' => false
         ));
+        
+        $ivaConditions = $this->em->getRepository('AppBundle:IvaCondition')->findAll();
 
         $this->columnBuilder
             ->add('id', 'column', array(
                 'title' => '#',
                 'width' => '40px',  
             ))
-            ->add('createdAt', 'datetime', array(
-                'visible'=> false,
-                'title' => $this->translator->trans('Created at'),
-            ))
             ->add('name', 'column', array(
                 'title' => $this->translator->trans('Name'),
                 'width' => '150px',  
+            ))
+
+            ->add('ivaCondition.name', 'column', array(
+                'title' => $this->translator->trans('Iva condition'),
+                'width' => '100px',  
+                'filter' => array('select', array(
+                    'search_type' => 'eq',
+                    'select_options' => array('' => 'Todos') + $this->getCollectionAsOptionsArray($ivaConditions, 'name', 'name'),
+                )),
             ))
             ->add('cuitDni', 'column', array(
                 'title' => $this->translator->trans('Cuit dni'),
                 'width' => '100px',  
             ))
+            ->add('createdAt', 'datetime', array(
+                'visible'=> false,
+                'title' => $this->translator->trans('Created at'),
+            ))
+                
             ->add('address', 'column', array(
                 'visible'=> false,
                 'title' => $this->translator->trans('Address'),
             ))
+             
             ->add('city', 'column', array(
                 'width' => '100px',  
                 'title' => $this->translator->trans('City'),
             ))
-            ->add('state', 'column', array(
-                'visible'=> false,
-                'title' => $this->translator->trans('State'),
-            ))
+                
             ->add('zipcode', 'column', array(
                 'visible'=> false,
                 'title' => $this->translator->trans('Zipcode'),
             ))
+                
+            ->add('state', 'column', array(
+                'visible'=> false,
+                'title' => $this->translator->trans('State'),
+            ))
+            
             ->add('phones', 'column', array(
                 'title' => $this->translator->trans('Phones'),
                 'width' => '120px',  
@@ -159,10 +167,7 @@ class CustomerDatatable extends AbstractDatatableView
                 'visible'=> false,
                 'title' => $this->translator->trans('Observations'),
             ))
-            ->add('ivaCondition.name', 'column', array(
-                'visible'=> false,
-                'title' => $this->translator->trans('Iva condition'),
-            ))
+            
             ->add(null, 'action', array(
                 'title' => $this->translator->trans('datatables.actions.title'),
                 'actions' => array(
