@@ -61,7 +61,7 @@ class RepairStateDatatable extends AbstractDatatableView
             'display_start' => 0,
             'defer_loading' => -1,
             'dom' => 'lfrtip',
-            'length_menu' => array(10, 25, 50, 100),
+            'length_menu' => array(10, 25, 50, 100, -1),
             'order_classes' => true,
             'order' => array(array(0, 'asc')),
             'order_multi' => true,
