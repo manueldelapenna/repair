@@ -224,13 +224,14 @@ class ReparationDatatable extends AbstractDatatableView
                 //'visible' => false,
                 'date_format' => 'DD/MM/Y',
                 'width' => '100px',
-                'filter' => array('daterange', array(
-                    
-                ))
+                'filter' => array('daterange', array())
             ))
             ->add('estimateDeliveryDate', 'datetime', array(
                 'title' => $this->translator->trans('Estimate delivery date'),
-                'visible' => false,
+                //'visible' => false,
+                'date_format' => 'DD/MM/Y',
+                'width' => '100px',
+                'filter' => array('daterange', array())
             ))
             ->add('effectiveDeliveryDate', 'datetime', array(
                 'title' => $this->translator->trans('Effective delivery date'),

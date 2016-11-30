@@ -18,10 +18,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('repairstate_index') }}">Back to the list</a>
+            <a href="{{ path('repairstate_index') }}"><span class="glyphicon glyphicon-list"></span> {{ 'back to the list'|trans }}</a>
         </li>
         <li>
-            <a href="{{ path('repairstate_edit', { 'id': repairState.id }) }}">Edit</a>
+            <a href="{{ path('repairstate_edit', { 'id': repairState.id }) }}"><span class="glyphicon glyphicon-edit"></span> {{ 'edit'|trans }}</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

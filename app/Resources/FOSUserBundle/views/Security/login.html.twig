@@ -41,8 +41,8 @@
 
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
-                <input type="submit" class="btn btn-success" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-                <a class="btn btn-primary" href="{{ path('fos_user_resetting_request') }}">¿Olvidaste tu contraseña?</a>
+                <button type="submit" class="btn btn-success" id="_submit" name="_submit"><span class="glyphicon glyphicon-log-in"></span> {{ 'security.login.submit'|trans }}</button>
+                <a class="btn btn-primary" href="{{ path('fos_user_resetting_request') }}"><span class="glyphicon glyphicon-question-sign"></span> ¿Olvidaste tu contraseña?</a>
             </div>
         </div>
 

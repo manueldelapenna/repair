@@ -3,17 +3,17 @@
 {% block body %}
 
     {{ form_start(delete_form) }}
-        <a class="btn btn-success" href="{{ path('user_index') }}">{{ 'back to the list'|trans }}</a>
-        <a class="btn btn-primary" href="{{ path('user_edit', { 'id': user.id }) }}">{{ 'edit'|trans }}</a>
+        <a class="btn btn-success" href="{{ path('user_index') }}"><span class="glyphicon glyphicon-list"></span> {{ 'back to the list'|trans }}</a>
+        <a class="btn btn-primary" href="{{ path('user_edit', { 'id': user.id }) }}"><span class="glyphicon glyphicon-edit"></span> {{ 'edit'|trans }}</a>
 
         {% if app.user.id != user.id %}
-            <input class="btn btn-danger" type="submit" value="{{ 'delete'|trans }}" onclick="return confirm('{{ 'Are you sure?'|trans }}')">
+            <button class="btn btn-danger" onclick="return confirm('{{ 'Are you sure?'|trans }}')" type="submit"><span class="glyphicon glyphicon-trash"></span> {{ 'delete'|trans }}</button>
         {% endif %}
     {{ form_end(delete_form) }}
 
     <h1>{{ 'User'|trans }}</h1>
 
-    <table>
+    <table class="table table-striped">
         <tbody>
             <tr>
                 <th>Id</th>
