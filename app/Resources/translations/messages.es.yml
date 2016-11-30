@@ -21,7 +21,7 @@ Customer edit: Editar Cliente
 Customer creation: Nuevo Cliente
 Customer Name: Cliente
 
-New reparation: Nueva reparacion
+New reparation: Nueva reparación
 Due: Deuda
 Reparation list: Reparaciones
 Created at: Fecha de alta
@@ -38,7 +38,7 @@ Customer.State: Provincia
 Customer: Cliente
 Reparation: Reparacion
 Reparation edit: Editar reparación
-Reparation number: Número de reparacion
+Reparation number: Número de reparación
 Brand: Marca
 Model: Modelo
 Series: Serie
@@ -55,8 +55,10 @@ Entry date: F. Ingreso
 Estimate delivery date: F. estimada entrega
 Effective delivery date: F. efectiva entrega
 Repair time state: Estado con respecto a fecha entrega
-Repairstate edit: Editar estado de reparacion
-Ivacondition edit: Editar condicion frente al IVA
+Repairstate edit: Editar estado de reparación
+Repairstate creation: Nuevo estado de reparación
+Ivacondition edit: Editar condición frente al IVA
+Ivacondition creation: Nueva condición frente al IVA
 
 Print: Imprimir
 reparation.all: Todas las reparaciones

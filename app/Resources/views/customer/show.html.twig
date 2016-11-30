@@ -12,7 +12,7 @@
     <table class="table table-striped">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>Nº Cliente</th>
                 <td>{{ customer.id }}</td>
             </tr>
             <tr>
@@ -22,6 +22,10 @@
             <tr>
                 <th>{{ 'Name'|trans }}</th>
                 <td>{{ customer.name }}</td>
+            </tr>
+            <tr>
+                <th>{{ 'Iva condition'|trans }}</th>
+                <td>{{ customer.ivaCondition.name }}</td>
             </tr>
             <tr>
                 <th>{{ 'Cuit dni'|trans }}</th>
@@ -69,8 +73,8 @@
     <br>
 
     {% if customer.reparations | length > 0 %}
-        <table class="table table-striped">
-            <tbody>
+        <table class="table table-striped table-bordered">
+            <thead>
                 <tr>
                     <th>Nº</th>
                     <th>{{ 'Entry date'|trans }}</th>
@@ -82,21 +86,45 @@
                     <th>{{ 'Estimate delivery date'|trans }}</th>
                     <th>{{ 'Effective delivery date'|trans }}</th>
                     <th>{{ 'State'|trans }}</th>
+                    <th>{{ 'Repair time state'|trans }}</th>
                     <th>{{ 'Actions'|trans }}</th>
                 <tr>
-
+            </thead>
+            <tbody>
                 {% for reparation in customer.reparations %}
                     <tr>
                         <td>{{ reparation.id }}</td>
                         <td>{% if reparation.entryDate %}{{ reparation.entryDate|date('d/m/Y') }}{% endif %}</td>
                         <td>{{ reparation.brand }}</td>
                         <td>{{ reparation.model }}</td>
-                        <td>$ {{ reparation.budget }}</td>
-                        <td>$ {{ reparation.payment }}</td>
-                        <td>$ {{ reparation.budget - reparation.payment }}</td>
+                        <td>{% if reparation.budget %}$ {{ reparation.budget }} {%else%} - {%endif%}</td>
+                        <td>{% if reparation.payment %}$ {{ reparation.payment }} {%else%} - {%endif%}</td>
+                        <td>{% if reparation.budget - reparation.payment %}$ {{ reparation.budget - reparation.payment }} {%else%} - {%endif%}</td>
                         <td>{% if reparation.estimateDeliveryDate %}{{ reparation.estimateDeliveryDate|date('d/m/Y') }}{% endif %}</td>
                         <td>{% if reparation.effectiveDeliveryDate %}{{ reparation.effectiveDeliveryDate|date('d/m/Y') }}{% endif %}</td>
                         <td>{{ reparation.state.name }}</td>
+                        <td> 
+                            {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::TRABAJO_RETRASADO') %}
+                                <span class="label label-danger">Trabajo retrasado</span>
+                            {% endif %}
+
+                            {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::DENTRO_TIEMPO_PACTADO') %}
+                                <span class="label label-info">Dentro del tiempo pactado</span>
+                            {% endif %}
+
+                            {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::CERCA_FECHA_ENTREGA') %}
+                                <span class="label label-warning">Cerca de fecha de entrega</span>
+                            {% endif %}
+
+                            {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::SIN_FECHA_PACTADA') %}
+                                <span class="label label-warning">Sin fecha pactada</span>
+                            {% endif %}
+
+                            {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::TRABAJO_TERMINADO_ANULADO') %}
+                                <span class="label label-success">Trabajo terminado</span>
+                            {% endif %}
+
+                        </td>   
                         <td>
                             <a class="btn btn-success" href="{{ path('reparation_show', { 'id': reparation.id }) }}"><span class="glyphicon glyphicon-eye-open"></span> {{ 'show'|trans }}</a>
                             <a class="btn btn-primary" href="{{ path('reparation_edit', { 'id': reparation.id }) }}"><span class="glyphicon glyphicon-edit"></span> {{ 'edit'|trans }}</a>

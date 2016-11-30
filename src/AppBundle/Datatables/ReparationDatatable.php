@@ -223,14 +223,14 @@ class ReparationDatatable extends AbstractDatatableView
                 'title' => $this->translator->trans('Entry date'),
                 //'visible' => false,
                 'date_format' => 'DD/MM/Y',
-                'width' => '100px',
+                'width' => '80px',
                 'filter' => array('daterange', array())
             ))
             ->add('estimateDeliveryDate', 'datetime', array(
                 'title' => $this->translator->trans('Estimate delivery date'),
                 //'visible' => false,
                 'date_format' => 'DD/MM/Y',
-                'width' => '100px',
+                'width' => '80px',
                 'filter' => array('daterange', array())
             ))
             ->add('effectiveDeliveryDate', 'datetime', array(
@@ -244,7 +244,7 @@ class ReparationDatatable extends AbstractDatatableView
             ))
             ->add('customer.cuitDni', 'column', array(
                 'title' => $this->translator->trans('Cuit dni'),
-                'width' => '100px',
+                'width' => '80px',
             ))
             
             ->add('customer.phones', 'column', array(

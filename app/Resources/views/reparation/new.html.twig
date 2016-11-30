@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <a class="btn btn-success" href="{{ path('reparation_index') }}">{{ 'back to the list'|trans }}</a>
+    <a class="btn btn-success" href="{{ path('reparation_index') }}"><span class="glyphicon glyphicon-list"></span> {{ 'back to the list'|trans }}</a>
+    <a class="btn btn-default" href="{{ path('reparation_index') }}"><span class="glyphicon glyphicon-remove"></span> {{ 'Cancel'|trans }}</a>
     
     <h1>{{ 'Reparation creation'|trans }}</h1>
 
@@ -9,8 +10,7 @@
         {{ form_widget(form) }}
         <div class="form-group">
             <div class="col-sm-2"></div>
-            <div class="col-sm-10"><input class="btn btn-default" type="submit" value="{{ 'create'|trans }}" /></div>
-            
+            <div class="col-sm-10"><button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-plus"></span> {{ 'create'|trans }}</button></div>
         </div>
     {{ form_end(form) }}
 

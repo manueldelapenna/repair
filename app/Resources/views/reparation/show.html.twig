@@ -25,6 +25,35 @@
                 </td>
             </tr>
             <tr>
+                <th>{{ 'State'|trans }}</th>
+                <td><strong>{{ reparation.state.name }}</strong></td>
+            </tr>
+            <tr>
+                <th>{{ 'Repair time state'|trans }}</th>
+                <td> 
+                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::TRABAJO_RETRASADO') %}
+                        <span class="label label-danger">Trabajo retrasado</span>
+                    {% endif %}
+                    
+                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::DENTRO_TIEMPO_PACTADO') %}
+                        <span class="label label-info">Dentro del tiempo pactado</span>
+                    {% endif %}
+                    
+                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::CERCA_FECHA_ENTREGA') %}
+                        <span class="label label-warning">Cerca de fecha de entrega</span>
+                    {% endif %}
+                    
+                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::SIN_FECHA_PACTADA') %}
+                        <span class="label label-warning">Sin fecha pactada</span>
+                    {% endif %}
+                    
+                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::TRABAJO_TERMINADO_ANULADO') %}
+                        <span class="label label-success">Trabajo terminado</span>
+                    {% endif %}
+                    
+                </td>   
+            </tr>
+            <tr>
                 <th>{{ 'Brand'|trans }}</th>
                 <td>{{ reparation.brand }}</td>
             </tr>
@@ -66,15 +95,15 @@
             </tr>
             <tr>
                 <th>{{ 'Budget'|trans }}</th>
-                <td>$ {{ reparation.budget }}</td>
+                <td>{% if reparation.budget %}$ {{ reparation.budget }} {%else%} - {%endif%}</td>
             </tr>
             <tr>
                 <th>{{ 'Payment'|trans }}</th>
-                <td>$ {{ reparation.payment }}</td>
+                <td>{% if reparation.payment %}$ {{ reparation.payment }} {%else%} - {%endif%}</td>
             </tr>
             <tr>
                 <th>{{ 'Due'|trans }}</th>
-                <td>$ {{ reparation.budget - reparation.payment }}</td>
+                <td>{% if reparation.budget - reparation.payment %}$ {{ reparation.budget - reparation.payment }} {%else%} - {%endif%}</td>
             </tr>
             <tr>
                 <th>{{ 'Entry date'|trans }}</th>
@@ -87,35 +116,6 @@
             <tr>
                 <th>{{ 'Effective delivery date'|trans }}</th>
                 <td>{% if reparation.effectiveDeliveryDate %}{{ reparation.effectiveDeliveryDate|date('d/m/Y') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>{{ 'State'|trans }}</th>
-                <td><strong>{{ reparation.state.name }}</strong></td>
-            </tr>
-            <tr>
-                <th>{{ 'Repair time state'|trans }}</th>
-                <td> 
-                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::TRABAJO_RETRASADO') %}
-                        <span class="label label-danger">Trabajo retrasado</span>
-                    {% endif %}
-                    
-                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::DENTRO_TIEMPO_PACTADO') %}
-                        <span class="label label-info">Dentro del tiempo pactado</span>
-                    {% endif %}
-                    
-                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::CERCA_FECHA_ENTREGA') %}
-                        <span class="label label-warning">Cerca de fecha de entrega</span>
-                    {% endif %}
-                    
-                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::SIN_FECHA_PACTADA') %}
-                        <span class="label label-warning">Sin fecha pactada</span>
-                    {% endif %}
-                    
-                    {% if reparation.repairTimeState == constant('AppBundle\\Entity\\Reparation::TRABAJO_TERMINADO_ANULADO') %}
-                        <span class="label label-success">Trabajo terminado</span>
-                    {% endif %}
-                    
-                </td>   
             </tr>
             <tr>
                 <th>{{ 'Observations'|trans }}</th>

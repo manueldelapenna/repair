@@ -116,7 +116,7 @@ class CustomerDatatable extends AbstractDatatableView
 
         $this->columnBuilder
             ->add('id', 'column', array(
-                'title' => 'Id',
+                'title' => '#',
                 'width' => '40px',  
             ))
             ->add('createdAt', 'datetime', array(
@@ -125,6 +125,7 @@ class CustomerDatatable extends AbstractDatatableView
             ))
             ->add('name', 'column', array(
                 'title' => $this->translator->trans('Name'),
+                'width' => '150px',  
             ))
             ->add('cuitDni', 'column', array(
                 'title' => $this->translator->trans('Cuit dni'),
@@ -135,7 +136,7 @@ class CustomerDatatable extends AbstractDatatableView
                 'title' => $this->translator->trans('Address'),
             ))
             ->add('city', 'column', array(
-                'visible'=> false,
+                'width' => '100px',  
                 'title' => $this->translator->trans('City'),
             ))
             ->add('state', 'column', array(
@@ -152,6 +153,7 @@ class CustomerDatatable extends AbstractDatatableView
             ))
             ->add('email', 'column', array(
                 'title' => $this->translator->trans('Email'),
+                'width' => '150px',  
             ))
             ->add('observations', 'column', array(
                 'visible'=> false,
