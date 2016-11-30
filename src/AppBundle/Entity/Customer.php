@@ -39,7 +39,7 @@ class Customer
     /**
      * @var string
      *
-     * @ORM\Column(name="cuit_dni", type="string", length=255, nullable=true)
+     * @ORM\Column(name="cuit_dni", type="string", length=255)
      */
     private $cuitDni;
 
