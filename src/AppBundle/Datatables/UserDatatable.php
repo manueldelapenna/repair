@@ -123,7 +123,14 @@ class UserDatatable extends AbstractDatatableView
             ))
             ->add('lastname', 'column', array(
                 'title' => 'Apellido',
-            	'editable' => true,
+            	'editable' => false,
+                'width' => '130px', 
+            ))
+                
+            ->add('roles', 'column', array(
+                'visible'=> false,
+                'title' => 'Roles',
+            	'editable' => false,
                 'width' => '130px', 
             ))
             ->add('enabled', 'boolean', array(
@@ -143,12 +150,7 @@ class UserDatatable extends AbstractDatatableView
                                    )
 
             ))
-            ->add('roles', 'column', array(
-                'visible'=> false,
-                'title' => 'Roles',
-            	'editable' => false,
-                'width' => '130px', 
-            ))
+            
             ->add(null, 'action', array(
                 'title' => $this->translator->trans('datatables.actions.title'),
                 'actions' => array(
