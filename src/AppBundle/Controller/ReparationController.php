@@ -338,39 +338,43 @@ class ReparationController extends Controller
         $pages = $pdf->pages; 
                 
         $page = $pages[0];
+       
+        $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 14); 
+        $page->drawText($reparation->getId(), 468, 775); 
         
-        // Set font 
+        $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 12); 
+        $page->drawText(date('d/m/Y'), 468, 735); 
+        
+        $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 11); 
+        
+        $page->drawText($reparation->getCustomer()->getName(), 155, 686); 
+        $page->drawText($reparation->getCustomer()->getId(), 480, 686); 
+        $page->drawText($reparation->getCustomer()->getCuitDni(), 155, 664); 
+        $page->drawText($reparation->getCustomer()->getAddress(), 155, 643); 
+        $page->drawText($reparation->getCustomer()->getCity(), 155, 622); 
+        $page->drawText($reparation->getCustomer()->getZipcode(), 290, 622); 
+        $page->drawText($reparation->getCustomer()->getState(), 414, 622); 
+        $page->drawText($reparation->getCustomer()->getPhones(), 155, 601); 
+        
+
+        $page->drawText($reparation->getBrand(), 155, 560); 
+        $page->drawText($reparation->getModel(), 395, 560); 
+
+        $page->drawText($reparation->getSeries(), 155, 538); 
+        
+        $page->drawText($reparation->getJoystick(), 155, 517);
+        $page->drawText(($reparation->getBattery()) ? 'Sí' : 'No', 242, 517);
+        $page->drawText(($reparation->getCharger()) ? 'Sí' : 'No', 396, 517);
+        $page->drawText(($reparation->getCables()) ? 'Sí' : 'No', 484, 517);
+        
+        $page->drawText(($reparation->getEntryDate()) ? $reparation->getEntryDate()->format('d/m/Y') : '-', 155, 488);
+        $page->drawText(($reparation->getEstimateDeliveryDate()) ? $reparation->getEstimateDeliveryDate()->format('d/m/Y') : '-', 330, 488);
+        $page->drawText(($reparation->getEffectiveDeliveryDate()) ? $reparation->getEffectiveDeliveryDate()->format('d/m/Y') : '-', 484, 488);
+        
         $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 10); 
-
-        // Draw text 
-        $page->drawText($reparation->getCustomer()->getName(), 155, 719); 
-        $page->drawText($reparation->getCustomer()->getCuitDni(), 155, 697); 
-        $page->drawText($reparation->getCustomer()->getAddress(), 155, 676); 
-        $page->drawText($reparation->getCustomer()->getCity(), 155, 655); 
-        $page->drawText($reparation->getCustomer()->getZipcode(), 290, 655); 
-        $page->drawText($reparation->getCustomer()->getState(), 414, 655); 
-        $page->drawText($reparation->getCustomer()->getPhones(), 155, 634); 
-        
-        $page->drawText(date('d/m/Y'), 190, 596); 
-        
-        $page->drawText($reparation->getId(), 155, 559); 
-
-        $page->drawText($reparation->getBrand(), 155, 538); 
-        $page->drawText($reparation->getModel(), 395, 538); 
-
-        $page->drawText($reparation->getSeries(), 155, 516); 
-        
-        $page->drawText($reparation->getJoystick(), 155, 495);
-        $page->drawText(($reparation->getBattery()) ? 'Sí' : 'No', 242, 495);
-        $page->drawText(($reparation->getCharger()) ? 'Sí' : 'No', 396, 495);
-        $page->drawText(($reparation->getCables()) ? 'Sí' : 'No', 484, 495);
-        
-        $page->drawText(($reparation->getEntryDate()) ? $reparation->getEntryDate()->format('d/m/Y') : '-', 155, 466);
-        $page->drawText(($reparation->getEstimateDeliveryDate()) ? $reparation->getEstimateDeliveryDate()->format('d/m/Y') : '-', 330, 466);
-        $page->drawText(($reparation->getEffectiveDeliveryDate()) ? $reparation->getEffectiveDeliveryDate()->format('d/m/Y') : '-', 484, 466);
         
         $lines = Reparation::separateStringInLines($reparation->getDiagnostic(), 80);
-        $y = 435;
+        $y = 457;
         $i = 1;
         foreach($lines as $line){
             if($i<=3){
@@ -383,7 +387,7 @@ class ReparationController extends Controller
         
         
         $lines = Reparation::separateStringInLines($reparation->getClientDescription(), 80);
-        $y = 395;
+        $y = 417;
         $i = 1;
         foreach($lines as $line){
             if($i<=3){
@@ -395,7 +399,7 @@ class ReparationController extends Controller
         
         
         $lines = Reparation::separateStringInLines($reparation->getTechnicalReport(), 80);
-        $y = 355;
+        $y = 377;
         $i = 1;
         foreach($lines as $line){
             if($i<=3){
@@ -405,12 +409,14 @@ class ReparationController extends Controller
             $i++;
         }
         
+        $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 11); 
+        
         $budget = '$ '. (is_null($reparation->getBudget()) ? '0' : $reparation->getBudget());
         $payment = '$ '. (is_null($reparation->getPayment()) ? '0' : $reparation->getPayment());
         
-        $page->drawText($budget. ' .-' , 155, 312); 
-        $page->drawText($payment . ' .-', 328, 312); 
-        $page->drawText('$ ' . ($reparation->getBudget() - $reparation->getPayment()) . ' .-' , 484, 312); 
+        $page->drawText($budget. ' .-' , 155, 334); 
+        $page->drawText($payment . ' .-', 328, 334); 
+        $page->drawText('$ ' . ($reparation->getBudget() - $reparation->getPayment()) . ' .-' , 484, 334); 
                        
         
         // Get PDF document as a string 
