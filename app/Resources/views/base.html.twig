@@ -3,29 +3,29 @@
     <meta charset="UTF-8" />
     <title>{% block title %}Seguimiento de Reparaciones{% endblock %}</title>
     {% block stylesheets %}
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/css/bootstrap-glyphicons.css"/>
-        <link rel="stylesheet" href="/css/daterangepicker.min.css">
-        <link rel="stylesheet" href="/css/datatables.min.css">
-        <link rel="stylesheet" href="/css/bootstrap-editable.css"/>
-        <link rel="stylesheet" href="/css/featherlight.min.css">
-        <link rel="stylesheet" href="/css/bootstrap-slider.min.css">
-        <link rel="stylesheet" href="/css/select2.min.css" />
+        <link rel="stylesheet" href={{ asset("css/bootstrap.min.css")}}>
+        <link rel="stylesheet" href={{ asset("css/font-awesome.min.css")}}>
+        <link rel="stylesheet" href={{ asset("css/bootstrap-glyphicons.css")}}/>
+        <link rel="stylesheet" href={{ asset("css/daterangepicker.min.css")}}>
+        <link rel="stylesheet" href={{ asset("css/datatables.min.css")}}>
+        <link rel="stylesheet" href={{ asset("css/bootstrap-editable.css")}}/>
+        <link rel="stylesheet" href={{ asset("css/featherlight.min.css")}}>
+        <link rel="stylesheet" href={{ asset("css/bootstrap-slider.min.css")}}>
+        <link rel="stylesheet" href={{ asset("css/select2.min.css")}} />
     	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
         
     {% endblock %}
     {% block head_javascripts %}
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/moment-with-locales.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/daterangepicker.min.js"></script>
-        <script src="/js/datatables.min.js"></script>
-        <script src="/js/bootstrap-editable.min.js"></script>
-        <script src="/js/featherlight.min.js"></script>
-        <script src="/js/jquery.highlight.js"></script>
-        <script src="/js/bootstrap-slider.min.js"></script>
-        <script src='/js/select2.full.min.js'></script>
+        <script src={{asset("js/jquery.min.js")}}></script>
+        <script src={{asset("js/moment-with-locales.min.js")}}></script>
+        <script src={{asset("js/bootstrap.min.js")}}></script>
+        <script src={{asset("js/daterangepicker.min.js")}}></script>
+        <script src={{asset("js/datatables.min.js")}}></script>
+        <script src={{asset("js/bootstrap-editable.min.js")}}></script>
+        <script src={{asset("js/featherlight.min.js")}}></script>
+        <script src={{asset("js/jquery.highlight.js")}}></script>
+        <script src={{asset("js/bootstrap-slider.min.js")}}></script>
+        <script src={{asset('js/select2.full.min.js')}}></script>
         <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', {'callback': 'fos.Router.setData'}) }}"></script>
     {% endblock %}
