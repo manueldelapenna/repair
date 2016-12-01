@@ -14,12 +14,12 @@ namespace Symfony\Component\DependencyInjection\Tests;
 require_once __DIR__.'/Fixtures/includes/classes.php';
 require_once __DIR__.'/Fixtures/includes/ProjectExtension.php';
 
-use Symfony\Bridge\PhpUnit\ErrorAssert;
 use Symfony\Component\Config\Resource\ResourceInterface;
 use Symfony\Component\DependencyInjection\Alias;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\DefinitionDecorator;
 use Symfony\Component\DependencyInjection\Exception\RuntimeException;
 use Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException;
 use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
@@ -59,18 +59,18 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @requires function Symfony\Bridge\PhpUnit\ErrorAssert::assertDeprecationsAreTriggered
+     * @group legacy
+     * @expectedDeprecation The "deprecated_foo" service is deprecated. You should stop using it, as it will soon be removed.
      */
     public function testCreateDeprecatedService()
     {
-        ErrorAssert::assertDeprecationsAreTriggered('The "deprecated_foo" service is deprecated. You should stop using it, as it will soon be removed.', function () {
-            $definition = new Definition('stdClass');
-            $definition->setDeprecated(true);
+        $definition = new Definition('stdClass');
+        $definition->setDeprecated(true);
 
-            $builder = new ContainerBuilder();
-            $builder->setDefinition('deprecated_foo', $definition);
-            $builder->get('deprecated_foo');
-        });
+        $builder = new ContainerBuilder();
+        $builder->setDefinition('deprecated_foo', $definition);
+        $builder->compile();
+        $builder->get('deprecated_foo');
     }
 
     public function testRegister()
@@ -114,7 +114,7 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
         try {
             @$builder->get('baz');
             $this->fail('->get() throws a ServiceCircularReferenceException if the service has a circular reference to itself');
-        } catch (\Symfony\Component\DependencyInjection\Exception\ServiceCircularReferenceException $e) {
+        } catch (ServiceCircularReferenceException $e) {
             $this->assertEquals('Circular reference detected for service "baz", path: "baz".', $e->getMessage(), '->get() throws a LogicException if the service has a circular reference to itself');
         }
 
@@ -381,6 +381,20 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($builder->get('foo'), $builder->resolveServices(new Expression('service("foo")')), '->resolveServices() resolves expressions');
     }
 
+    /**
+     * @expectedException \Symfony\Component\DependencyInjection\Exception\RuntimeException
+     * @expectedExceptionMessage Constructing service "foo" from a Symfony\Component\DependencyInjection\DefinitionDecorator is not supported at build time.
+     */
+    public function testResolveServicesWithDecoratedDefinition()
+    {
+        $builder = new ContainerBuilder();
+        $builder->setDefinition('grandpa', new Definition('stdClass'));
+        $builder->setDefinition('parent', new DefinitionDecorator('grandpa'));
+        $builder->setDefinition('foo', new DefinitionDecorator('parent'));
+
+        $builder->get('foo');
+    }
+
     public function testMerge()
     {
         $container = new ContainerBuilder(new ParameterBag(array('bar' => 'foo')));
@@ -626,14 +640,12 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
         $container->set('a', new \stdClass());
     }
 
-    /**
-     * @expectedException \BadMethodCallException
-     */
     public function testThrowsExceptionWhenAddServiceOnAFrozenContainer()
     {
         $container = new ContainerBuilder();
         $container->compile();
-        $container->set('a', new \stdClass());
+        $container->set('a', $foo = new \stdClass());
+        $this->assertSame($foo, $container->get('a'));
     }
 
     public function testNoExceptionWhenSetSyntheticServiceOnAFrozenContainer()
@@ -695,12 +707,11 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
     {
         $loader = new ClosureLoader($container = new ContainerBuilder());
         $loader->load(function (ContainerBuilder $container) {
-                $container->set('a', new \BazClass());
-                $definition = new Definition('BazClass');
-                $definition->setLazy(true);
-                $container->setDefinition('a', $definition);
-            }
-        );
+            $container->set('a', new \BazClass());
+            $definition = new Definition('BazClass');
+            $definition->setLazy(true);
+            $container->setDefinition('a', $definition);
+        });
 
         $container->setResourceTracking(true);
 

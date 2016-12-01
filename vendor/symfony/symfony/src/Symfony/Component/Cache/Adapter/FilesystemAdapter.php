@@ -36,7 +36,7 @@ class FilesystemAdapter extends AbstractAdapter
         if (!file_exists($dir = $directory.'/.')) {
             @mkdir($directory, 0777, true);
         }
-        if (false === $dir = realpath($dir)) {
+        if (false === $dir = realpath($dir) ?: (file_exists($dir) ? $dir : false)) {
             throw new InvalidArgumentException(sprintf('Cache directory does not exist (%s)', $directory));
         }
         if (!is_writable($dir .= DIRECTORY_SEPARATOR)) {
@@ -60,7 +60,7 @@ class FilesystemAdapter extends AbstractAdapter
 
         foreach ($ids as $id) {
             $file = $this->getFile($id);
-            if (!$h = @fopen($file, 'rb')) {
+            if (!file_exists($file) || !$h = @fopen($file, 'rb')) {
                 continue;
             }
             if ($now >= (int) $expiresAt = fgets($h)) {
@@ -73,7 +73,7 @@ class FilesystemAdapter extends AbstractAdapter
                 $value = stream_get_contents($h);
                 fclose($h);
                 if ($i === $id) {
-                    $values[$id] = unserialize($value);
+                    $values[$id] = parent::unserialize($value);
                 }
             }
         }
@@ -146,13 +146,13 @@ class FilesystemAdapter extends AbstractAdapter
 
     private function getFile($id, $mkdir = false)
     {
-        $hash = str_replace('/', '-', base64_encode(md5($id, true)));
-        $dir = $this->directory.$hash[0].DIRECTORY_SEPARATOR.$hash[1].DIRECTORY_SEPARATOR;
+        $hash = str_replace('/', '-', base64_encode(hash('sha256', $id, true)));
+        $dir = $this->directory.strtoupper($hash[0].DIRECTORY_SEPARATOR.$hash[1].DIRECTORY_SEPARATOR);
 
         if ($mkdir && !file_exists($dir)) {
             @mkdir($dir, 0777, true);
         }
 
-        return $dir.substr($hash, 2, -2);
+        return $dir.substr($hash, 2, 20);
     }
 }

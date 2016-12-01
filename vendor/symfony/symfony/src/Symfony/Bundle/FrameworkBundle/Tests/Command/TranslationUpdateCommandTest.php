@@ -28,6 +28,15 @@ class TranslationUpdateCommandTest extends \PHPUnit_Framework_TestCase
         $tester = $this->createCommandTester($this->getContainer(array('foo' => 'foo')));
         $tester->execute(array('command' => 'translation:update', 'locale' => 'en', 'bundle' => 'foo', '--dump-messages' => true, '--clean' => true));
         $this->assertRegExp('/foo/', $tester->getDisplay());
+        $this->assertRegExp('/1 message was successfully extracted/', $tester->getDisplay());
+    }
+
+    public function testDumpTwoMessagesAndClean()
+    {
+        $tester = $this->createCommandTester($this->getContainer(array('foo' => 'foo', 'bar' => 'bar')));
+        $tester->execute(array('command' => 'translation:update', 'locale' => 'en', 'bundle' => 'foo', '--dump-messages' => true, '--clean' => true));
+        $this->assertRegExp('/foo/', $tester->getDisplay());
+        $this->assertRegExp('/bar/', $tester->getDisplay());
         $this->assertRegExp('/2 messages were successfully extracted/', $tester->getDisplay());
     }
 
@@ -82,7 +91,7 @@ class TranslationUpdateCommandTest extends \PHPUnit_Framework_TestCase
             ->method('extract')
             ->will(
                 $this->returnCallback(function ($path, $catalogue) use ($extractedMessages) {
-                  $catalogue->add($extractedMessages);
+                    $catalogue->add($extractedMessages);
                 })
             );
 
@@ -92,7 +101,7 @@ class TranslationUpdateCommandTest extends \PHPUnit_Framework_TestCase
             ->method('loadMessages')
             ->will(
                 $this->returnCallback(function ($path, $catalogue) use ($loadedMessages) {
-                  $catalogue->add($loadedMessages);
+                    $catalogue->add($loadedMessages);
                 })
             );
 
