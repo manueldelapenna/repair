@@ -18,6 +18,8 @@ Ej:
 		mailer_password: password
 		secret: ThisTokenIsNotSoSecretChangeIt
 
+        
+        generar secret: http://nux.net/secret
 
 3) Ejecutar composer install
 4) Crear base de datos
