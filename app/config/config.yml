@@ -90,12 +90,12 @@ fos_user:
             enabled: true
             from_email:
                 address:        registration@example.com
-                sender_name:    Demo Registration
+                sender_name:    Confirmar Registtro
             template:   FOSUserBundle:Registration:email.txt.twig
 
     resetting:
         email:
             from_email:
+                sender_name:    Recuperar Contraseña
                 address:        resetting@example.com
-                sender_name:    Demo Resetting
             template:   FOSUserBundle:Resetting:email.txt.twig
