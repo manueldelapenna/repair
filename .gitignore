@@ -15,3 +15,5 @@
 /nbproject/*
 /vendor/*
 !vendor/.gitkeep
+/web/bundles/*
+!/web/bundles/.gitkeep
