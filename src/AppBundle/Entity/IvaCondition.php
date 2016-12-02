@@ -4,12 +4,14 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * IvaCondition
  *
  * @ORM\Table(name="iva_condition")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\IvaConditionRepository")
+ * @UniqueEntity("name")
  */
 class IvaCondition
 {
