@@ -104,19 +104,22 @@ class ReparationDatatable extends AbstractDatatableView
                                                                                                                 '1', 
                                                                                                                 '2', 
                                                                                                                 '3', 
-                                                                                                                '4', 
+                                                                                                                //'4', 
                                                                                                                 '5', 
-                                                                                                                '6',
+                                                                                                                //'6',
                                                                                                                 '7',
-                                                                                                                '8',
+                                                                                                                //'8',
                                                                                                                 '9',
                                                                                                                 '10',
                                                                                                                 '11',
                                                                                                                 '12',
                                                                                                                 '13',
-                                                                                                                '14',
+                                                                                                                //'14',
                                                                                                                 '15',
                                                                                                                 '16', 
+                                                                                                                '17', 
+                                                                                                                '18', 
+                                                                                                                '19', 
                                                                                                                )
                                                                                             ),
                                                                     ),
@@ -216,6 +219,12 @@ class ReparationDatatable extends AbstractDatatableView
                 'width' => '80px',
                 'filter' => array('daterange', array())
             ))
+            ->add('entryDate', 'datetime', array(
+                'title' => $this->translator->trans('Entry date'),
+                'date_format' => 'DD/MM/Y',
+                'visible' => false,
+            ))
+                
             ->add('estimateDeliveryDate', 'datetime', array(
                 'title' => $this->translator->trans('Estimate delivery date'),
                 'visible' => false,
@@ -223,6 +232,13 @@ class ReparationDatatable extends AbstractDatatableView
                 'width' => '80px',
                 'filter' => array('daterange', array())
             ))
+                
+            ->add('estimateDeliveryDate', 'datetime', array(
+                'title' => $this->translator->trans('Estimate delivery date'),
+                'visible' => false,
+                'date_format' => 'DD/MM/Y',
+            ))
+                
             ->add('effectiveDeliveryDate', 'datetime', array(
                 'title' => $this->translator->trans('Effective delivery date'),
                 'visible' => false,
@@ -253,11 +269,16 @@ class ReparationDatatable extends AbstractDatatableView
             ))
             ->add('state.name', 'column', array(
                 'title' => $this->translator->trans('State'),
-                'width' => '160px',
+                'width' => '120px',
                 'filter' => array('select', array(
                     'search_type' => 'eq',
                     'select_options' => array('' => 'Todos') + $this->getCollectionAsOptionsArray($states, 'name', 'name'),
                 )),
+            ))
+                
+            ->add('state.name', 'column', array(
+                'title' => $this->translator->trans('State'),
+                'visible' => false,
             ))
             ->add('repairTimeState', 'virtual', array(
                 'title' => $this->translator->trans('Repair time state'),

@@ -60,7 +60,7 @@ class CustomerDatatable extends AbstractDatatableView
                                                                                             'columns' => array(
                                                                                                                 '0',
                                                                                                                 '1', 
-                                                                                                                '2', 
+                                                                                                                //'2', 
                                                                                                                 '3', 
                                                                                                                 '4', 
                                                                                                                 '5', 
@@ -69,6 +69,7 @@ class CustomerDatatable extends AbstractDatatableView
                                                                                                                 '8',
                                                                                                                 '9',
                                                                                                                 '10',
+                                                                                                                '11',
                                                                                                                )
                                                                                             ),
                                                                     ),
@@ -117,14 +118,21 @@ class CustomerDatatable extends AbstractDatatableView
                 'width' => '150px',  
             ))
 
-//            ->add('ivaCondition.name', 'column', array(
-//                'title' => $this->translator->trans('Iva condition'),
-//                'width' => '100px',  
-//                'filter' => array('select', array(
-//                    'search_type' => 'eq',
-//                    'select_options' => array('' => 'Todos') + $this->getCollectionAsOptionsArray($ivaConditions, 'name', 'name'),
-//                )),
-//            ))
+            ->add('ivaCondition.name', 'column', array(
+                'title' => $this->translator->trans('Iva condition'),
+                'width' => '100px',  
+                'filter' => array('select', array(
+                    'search_type' => 'eq',
+                    'select_options' => array('' => 'Todos') + $this->getCollectionAsOptionsArray($ivaConditions, 'name', 'name'),
+                )),
+            ))
+            
+            ->add('ivaCondition.name', 'column', array(
+                'title' => $this->translator->trans('Iva condition'),
+                'width' => '100px',  
+                'visible' => false,
+            ))
+                
             ->add('cuitDni', 'column', array(
                 'title' => $this->translator->trans('Cuit dni'),
                 'width' => '100px',  
