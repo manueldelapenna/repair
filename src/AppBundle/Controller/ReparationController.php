@@ -340,36 +340,36 @@ class ReparationController extends Controller
         $page = $pages[0];
        
         $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 14); 
-        $page->drawText($reparation->getId(), 468, 775); 
+        $page->drawText($reparation->getId(), 468, 775, 'UTF-8'); 
         
         $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 12); 
-        $page->drawText(date('d/m/Y'), 468, 735); 
+        $page->drawText(date('d/m/Y'), 468, 735, 'UTF-8'); 
         
         $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 11); 
         
-        $page->drawText($reparation->getCustomer()->getName(), 155, 686); 
-        $page->drawText($reparation->getCustomer()->getId(), 480, 686); 
-        $page->drawText($reparation->getCustomer()->getCuitDni(), 155, 664); 
-        $page->drawText($reparation->getCustomer()->getAddress(), 155, 643); 
-        $page->drawText($reparation->getCustomer()->getCity(), 155, 622); 
-        $page->drawText($reparation->getCustomer()->getZipcode(), 290, 622); 
-        $page->drawText($reparation->getCustomer()->getState(), 414, 622); 
-        $page->drawText($reparation->getCustomer()->getPhones(), 155, 601); 
+        $page->drawText($reparation->getCustomer()->getName(), 155, 686, 'UTF-8'); 
+        $page->drawText($reparation->getCustomer()->getId(), 480, 686, 'UTF-8'); 
+        $page->drawText($reparation->getCustomer()->getCuitDni(), 155, 664, 'UTF-8'); 
+        $page->drawText($reparation->getCustomer()->getAddress(), 155, 643, 'UTF-8'); 
+        $page->drawText($reparation->getCustomer()->getCity(), 155, 622, 'UTF-8'); 
+        $page->drawText($reparation->getCustomer()->getZipcode(), 290, 622, 'UTF-8'); 
+        $page->drawText($reparation->getCustomer()->getState(), 414, 622, 'UTF-8'); 
+        $page->drawText($reparation->getCustomer()->getPhones(), 155, 601, 'UTF-8'); 
         
 
-        $page->drawText($reparation->getBrand(), 155, 560); 
-        $page->drawText($reparation->getModel(), 395, 560); 
+        $page->drawText($reparation->getBrand(), 155, 560, 'UTF-8'); 
+        $page->drawText($reparation->getModel(), 395, 560, 'UTF-8'); 
 
-        $page->drawText($reparation->getSeries(), 155, 538); 
+        $page->drawText($reparation->getSeries(), 155, 538, 'UTF-8'); 
         
-        $page->drawText($reparation->getJoystick(), 155, 517);
-        $page->drawText(($reparation->getBattery()) ? 'Sí' : 'No', 242, 517);
-        $page->drawText(($reparation->getCharger()) ? 'Sí' : 'No', 396, 517);
-        $page->drawText(($reparation->getCables()) ? 'Sí' : 'No', 484, 517);
+        $page->drawText($reparation->getJoystick(), 155, 517, 'UTF-8');
+        $page->drawText(($reparation->getBattery()) ? 'Sí' : 'No', 242, 517, 'UTF-8');
+        $page->drawText(($reparation->getCharger()) ? 'Sí' : 'No', 396, 517, 'UTF-8');
+        $page->drawText(($reparation->getCables()) ? 'Sí' : 'No', 484, 517, 'UTF-8');
         
-        $page->drawText(($reparation->getEntryDate()) ? $reparation->getEntryDate()->format('d/m/Y') : '-', 155, 488);
-        $page->drawText(($reparation->getEstimateDeliveryDate()) ? $reparation->getEstimateDeliveryDate()->format('d/m/Y') : '-', 330, 488);
-        $page->drawText(($reparation->getEffectiveDeliveryDate()) ? $reparation->getEffectiveDeliveryDate()->format('d/m/Y') : '-', 484, 488);
+        $page->drawText(($reparation->getEntryDate()) ? $reparation->getEntryDate()->format('d/m/Y') : '-', 155, 488, 'UTF-8');
+        $page->drawText(($reparation->getEstimateDeliveryDate()) ? $reparation->getEstimateDeliveryDate()->format('d/m/Y') : '-', 330, 488, 'UTF-8');
+        $page->drawText(($reparation->getEffectiveDeliveryDate()) ? $reparation->getEffectiveDeliveryDate()->format('d/m/Y') : '-', 484, 488, 'UTF-8');
         
         $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 10); 
         
