@@ -58,7 +58,7 @@ class CustomerDatatable extends AbstractDatatableView
                                                                     'exportOptions' => array(
                                                                                             // show only the following columns:
                                                                                             'columns' => array(
-                                                                                                                '0',
+                                                                                                                //'0',
                                                                                                                 '1', 
                                                                                                                 //'2', 
                                                                                                                 '3', 
@@ -112,6 +112,7 @@ class CustomerDatatable extends AbstractDatatableView
             ->add('id', 'column', array(
                 'title' => '#',
                 'width' => '40px',  
+                'visible' => false,
             ))
             ->add('name', 'column', array(
                 'title' => $this->translator->trans('Name'),
