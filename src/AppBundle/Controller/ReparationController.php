@@ -348,8 +348,9 @@ class ReparationController extends Controller
         $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 11); 
         
         $page->drawText($reparation->getCustomer()->getName(), 155, 686, 'UTF-8'); 
-        $page->drawText($reparation->getCustomer()->getId(), 480, 686, 'UTF-8'); 
+        
         $page->drawText($reparation->getCustomer()->getCuitDni(), 155, 664, 'UTF-8'); 
+        $page->drawText($reparation->getCustomer()->getEmail(), 302, 664, 'UTF-8'); 
         $page->drawText($reparation->getCustomer()->getAddress(), 155, 643, 'UTF-8'); 
         $page->drawText($reparation->getCustomer()->getCity(), 155, 622, 'UTF-8'); 
         $page->drawText($reparation->getCustomer()->getZipcode(), 290, 622, 'UTF-8'); 
