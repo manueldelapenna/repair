@@ -49,7 +49,7 @@ class UserDatatable extends AbstractDatatableView
             'searching' => true,
             'server_side' => true,
             'state_save' => false,
-            'delay' => 700,
+            'delay' => 0,
             'extensions' => array(
                                 'buttons' =>array(
                                                     //'colvis',
@@ -91,7 +91,7 @@ class UserDatatable extends AbstractDatatableView
             'paging_type' => Style::FULL_NUMBERS_PAGINATION,
             'renderer' => '',
             'scroll_collapse' => false,
-            'search_delay' => 0,
+            'search_delay' => 700,
             'state_duration' => 7200,
             'stripe_classes' => array(),
             'class' => Style::BOOTSTRAP_3_STYLE . ' table-condensed',
