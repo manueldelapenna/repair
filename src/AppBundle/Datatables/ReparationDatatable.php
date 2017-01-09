@@ -90,7 +90,7 @@ class ReparationDatatable extends AbstractDatatableView
             'scroll_y' => '',
             'searching' => true,
             'state_save' => false,
-            'delay' => 0,
+            'delay' => 700,
             'extensions' => array(
                                 'buttons' =>array(
                                                     //'colvis',

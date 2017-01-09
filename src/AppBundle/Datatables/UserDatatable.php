@@ -49,7 +49,7 @@ class UserDatatable extends AbstractDatatableView
             'searching' => true,
             'server_side' => true,
             'state_save' => false,
-            'delay' => 0,
+            'delay' => 700,
             'extensions' => array(
                                 'buttons' =>array(
                                                     //'colvis',
